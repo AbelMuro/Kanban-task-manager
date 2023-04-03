@@ -1,0 +1,12 @@
+.sidebar{
+    width: 400px;
+    height: 100vh;
+    background-color: rgb(25, 43, 59);
+}
+
+.addBoard{
+    border: none;
+    background-color: transparent;
+    color: purple;
+    cursor: pointer;
+}
