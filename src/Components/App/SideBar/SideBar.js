@@ -3,10 +3,15 @@ import DialogBox from './DialogBox';
 import Switch from './Switch';
 import styles from './styles.module.css';
 import useLocalStorage from './useLocalStorage';
+import HideShowIcon from './HideShowIcon';
 import icons from './icons';
 
 function SideBar() {
     const boards = useLocalStorage('boards');
+
+    const handleHover = (e) => {
+        console.log(e.target.firstElementChild);
+    }
 
     return(
         <aside className={styles.sidebar}>
@@ -22,6 +27,10 @@ function SideBar() {
 
             <section className={styles.sidebar_bottom}>
                 <Switch/>
+                <button className={styles.sidebar_hideShowButton} onMouseEnter={handleHover}> 
+                    <HideShowIcon display={true}/>
+                    Hide Sidebar
+                </button>
             </section>
 
         </aside>

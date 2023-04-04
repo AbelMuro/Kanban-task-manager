@@ -7,6 +7,7 @@
     transition: all 0.2s linear;
     margin: 0px;
     padding: 0px;
+    box-sizing: border-box;
 }
 
 :root{
@@ -18,9 +19,6 @@
     --sidebar-switch-box: #F4F7FD;
     --sidebar-switch-icon-color: white;
     --sidebar-board-icon-color: #828FA3;
-
-    
-    
 
     --h1-font-size: 24px;
     --h1-font-weight: 700;

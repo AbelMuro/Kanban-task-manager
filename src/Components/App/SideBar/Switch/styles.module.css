@@ -1,0 +1,37 @@
+.switchBox{
+    width: 251px;
+    height: 48px;
+    background-color: #F4F7FD;
+    border-radius: 6px;
+    padding: 0px 64px 0px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px 8px 24px;
+}
+
+.themeIcon{
+    width: 18.33px;
+    object-fit: contain;
+}
+
+.switch{
+    width: 40px;
+    height: 20px;
+    border-radius: 12px;
+    background-color: #635FC7;
+    position: relative;
+    cursor: pointer;
+}
+
+.handle{
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 3px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    background-color: white;
+}

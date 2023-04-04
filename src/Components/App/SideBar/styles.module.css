@@ -33,3 +33,29 @@
     color: #828FA3;
     margin: 0px 0px 19px 32px;
 }
+
+.sidebar_bottom{
+    width: 251px;
+}
+
+.sidebar_hideShowButton{
+    width: 276px;
+    height: 48px;
+    padding-left: 31px;
+    border-radius: 0px 100px 100px 0px;
+    border: none;
+    background-color: transparent;
+    font-family: var(--font-jakarta);
+    font-weight: var(--h3-font-weight);
+    font-size: var(--h3-font-size);
+    line-height: var(--h3-line-height);
+    color:  #828FA3;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar_hideShowButton:hover{
+    background-color: rgba(99, 95, 199, 0.1);
+    color: rgb(99, 95, 199);
+}
