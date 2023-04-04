@@ -1,25 +1,26 @@
 import {useEffect, useState} from 'react';
 
+
+//remember! you must dispatch the StorageEvent everytime you update the local storage!!
 function useLocalStorage(key) {
     const [items, setItems] = useState([]);
 
-    useEffect(() => {
-        window.addEventListener('storage',() => {
 
-        })
-        return () => {
-            window.removeEventListener('storage', () => {
-                
-            })
+//this useEffect will detect changes from the local storage
+    useEffect(() => {
+        const storageHandler = () => {
+            const allItems = localStorage.getItem(key);
+            if(allItems) 
+                setItems(allItems);
         }
 
-    })
+        document.addEventListener('StorageEvent', storageHandler);
 
-    useEffect(() => {
-        const allItems = localStorage.getItem(key);
-        if(allItems) 
-            setItems(allItems);
-    });
+        return () => {
+            document.removeEventListener('StorageEvent', storageHandler);
+        }
+    }, [])
+
 
     return items;
 }

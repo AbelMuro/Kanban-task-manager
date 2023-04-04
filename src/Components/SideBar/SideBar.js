@@ -8,9 +8,6 @@ function SideBar() {
     const boards = useLocalStorage('boards');
     console.log(boards)
 
-    const handleDialog = () => {
-        setOpen(true);
-    }
 
     return(
         <aside className={styles.sidebar}>
@@ -19,11 +16,8 @@ function SideBar() {
                 ALL BOARDS 8
             </h3>
             <section className={styles.sidebar_boards}>
-                <button className={styles.sidebar_addBoard} onClick={handleDialog}>
-                    +Create New Board
-                </button>
-            </section>
-            <DialogBox open={open} setOpen={setOpen}/>
+                <DialogBox/>
+            </section> 
         </aside>
     )
 }
