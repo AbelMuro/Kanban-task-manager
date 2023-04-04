@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'plus jakarta';
+    src: url('./FontFiles/PlusJakartaSans-VariableFont_wght.ttf');
+}
+
+*{
+    transition: all 0.2s linear;
+    margin: 0px;
+    padding: 0px;
+}
+
+:root{
+    --font-jakarta: 'plus jakarta';
+    --body-bg: #F2F2F2;
+    --dark-body-bg: #20212C;
+
+    --sidebar-bg: white;
+    --sidebar-switch-box: #F4F7FD;
+    --sidebar-switch-icon-color: white;
+    --sidebar-board-icon-color: #828FA3;
+
+    
+    
+
+    --h1-font-size: 24px;
+    --h1-font-weight: 700;
+    --h1-line-height: 30px;
+
+    --h2-font-size: 18px;
+    --h2-font-weight: 700;
+    --h2-line-height: 23px;
+
+    --h3-font-size: 15px;
+    --h3-font-weight: 700;
+    --h3-line-height: 19px;
+
+    --h4-font-size: 12px;
+    --h4-font-weight: 700;
+    --h4-line-height: 15px;
+    --h4-letter-spacing: 2.4px;
+
+    --body-large-font-size: 13px;
+    --body-large-font-weight: 500;
+    --body-large-line-height: 23px;
+
+    --body-medium-font-size: 12px;
+    --body-medium-font-weight: 700;
+    --body-medium-line-height: 15.12px;
+}
+
+body{
+    background-color: var(--body-bg);
+}

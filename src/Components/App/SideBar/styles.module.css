@@ -1,0 +1,35 @@
+.sidebar{
+    width: 300px;
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32.78px 0px 32px 0px;
+}
+.sidebar_top{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 54px;
+}
+
+.sidebar_logo{
+    width: 152.53px;
+    object-fit: contain;
+    margin-left: 34px;
+}
+
+.sidebar_boards{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar_title{
+    font-family: var(--font-jakarta);
+    font-size: var(--h4-font-size);
+    font-weight: var(--h4-font-weight);
+    line-height: var(--h4-line-height);
+    color: #828FA3;
+    margin: 0px 0px 19px 32px;
+}

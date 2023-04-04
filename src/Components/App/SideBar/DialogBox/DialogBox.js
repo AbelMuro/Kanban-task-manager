@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
+import BoardIcon from './BoardIcon';
 import styles from './styles.module.css';
 
 function DialogBox() {
@@ -32,7 +33,8 @@ function DialogBox() {
 
     return(
         <>
-            <button className={styles.sidebar_addBoard} onClick={handleDialog}>
+            <button className={styles.sidebar_addBoardButton} onClick={handleDialog}>
+                <BoardIcon/>
                 +Create New Board
             </button>
             <Dialog open={open}>
