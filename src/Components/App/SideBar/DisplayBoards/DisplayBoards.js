@@ -26,10 +26,8 @@ function DisplayBoards() {
 
     //removing the purple background color from the previously selected board
     useEffect(() => {
-        console.log(boardIconRefs.current);
         const allBoards = document.querySelectorAll('.' + styles.sidebar_board);
         allBoards.forEach((board) => {
-            console.log(board.id);
             if(board.classList.contains(styles.sidebar_board_active)){
                 board.classList.remove(styles.sidebar_board_active)
                 boardIconRefs.current[board.id].style.fill = '';
