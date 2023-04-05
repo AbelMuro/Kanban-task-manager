@@ -1,9 +1,10 @@
-
 .column_container{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 63px;
+    min-height: 63px;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .column_container{
@@ -15,7 +16,14 @@
     font-size: var(--h4-font-size);
     font-weight: var(--h4-font-weight);
     line-height: var(--h4-line-height);
-    color:#828FA3;
+    color: var(--dialog-label-text-color);
+}
+
+.column_allColumns{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 4px;
 }
 
 
@@ -40,4 +48,30 @@
     display: flex;
     justify-content: space-between;
     gap: 16px;
+}
+
+.input{
+    width: 385px;
+    height: 40px;
+    border: 1px solid rgba(130, 143, 163, 0.25);
+    border-radius: 4px;
+    font-family: var(--font-jakarta);
+    font-size: var(--body-large-font-size);
+    font-weight: var(--body-large-font-weight);
+    padding-left: 16px;
+    color: var(--dialog-input-text-color);
+}
+
+.input:hover{
+    border: 1px solid #635FC7;
+}
+
+.input:focus{
+    outline: none;
+    border: 2px solid #635FC7;
+}
+.input_close{
+    width: 15px;
+    object-fit: contain;
+    cursor: pointer;
 }

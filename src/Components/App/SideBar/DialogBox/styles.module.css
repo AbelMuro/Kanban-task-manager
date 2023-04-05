@@ -29,11 +29,30 @@
     font-size: var(--h2-font-size);
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
-    color: #000112;
+    color: var(--dialog-text-color);
     padding: 32px 32px 24px 32px;
 }
 
 .dialog_content{
-    width: 416px;
-    height: 254px;
+    width: 480px;
+    height: 429px;
+    padding: 0px 32px 32px 0px;
+}
+
+.dialog_submit{
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+    background-color: #635FC7;
+    font-family: var(--font-jakarta);
+    font-size: var(--body-large-font-size);
+    font-weight: var(--body-large-font-weight);
+    line-height: var(--body-large-line-height);
+    color: white;
+    cursor: pointer;
+}
+
+.dialog_submit:hover{
+    background-color: #A8A4FF;
 }

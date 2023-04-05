@@ -15,15 +15,19 @@ fieldset{
 }
 
 :root{
-    --font-jakarta: 'plus jakarta';
     --body-bg: #F2F2F2;
-    --dark-body-bg: #20212C;
-
     --sidebar-bg: white;
     --sidebar-switch-box: #F4F7FD;
     --sidebar-switch-icon-color: white;
     --sidebar-board-icon-color: #828FA3;
+    --dialog-input-text-color: black;
+    --dialog-add-button: rgba(99, 95, 199, 0.1);
+    --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
+    --dialog-text-color: #000112;
+    --dialog-label-text-color: #828FA3;
 
+
+    --font-jakarta: 'plus jakarta';
     --h1-font-size: 24px;
     --h1-font-weight: 700;
     --h1-line-height: 30px;
