@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
 import styles from './styles.module.css';
+import BoardNameInput from './BoardNameInput';
+import ColumnInputs from './ColumnInputs';
 
 function DialogBox() {
     const [open, setOpen] = useState(false);
-    const [boardName, setBoardName] = useState('');
+    const boardName = useRef();
 
-    const handleBoardName = (e) => {
-        setBoardName(e.target.value);
-    }
 
     const handleDialog = () => {
         setOpen(!open);
@@ -38,20 +37,14 @@ function DialogBox() {
                 +Create New Board
             </button>
             <Dialog open={open}>
-                <DialogTitle>
+                <DialogTitle className={styles.dialog_title}>
                     Add New Board
                 </DialogTitle>
-                <DialogContent>
-                    <fieldset className={styles.inputContainer}>
-                        <label>
-                            Board Name
-                        </label>
-                        <input 
-                            className={styles.input} 
-                            value={boardName}
-                            onChange={handleBoardName}
-                            />
-                    </fieldset>
+                <DialogContent className={styles.dialog_content}>
+                    <form>
+                        <BoardNameInput ref={boardName}/>
+                        <ColumnInputs/>
+                    </form>
                 </DialogContent>
                 <DialogActions>
                         <button className={styles.close} onClick={handleDialog}>

@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+fieldset{
+    border: none;
+}
+
 :root{
     --font-jakarta: 'plus jakarta';
     --body-bg: #F2F2F2;

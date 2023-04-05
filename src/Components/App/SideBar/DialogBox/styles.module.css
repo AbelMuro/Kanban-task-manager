@@ -20,6 +20,20 @@
 }
 
 .icon{
-    fill: var(--sidebar-board-icon-color);
+    fill: #635FC7;
 }
 
+
+.dialog_title{
+    font-family: var(--font-jakarta);
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    line-height: var(--h2-line-height);
+    color: #000112;
+    padding: 32px 32px 24px 32px;
+}
+
+.dialog_content{
+    width: 416px;
+    height: 254px;
+}
