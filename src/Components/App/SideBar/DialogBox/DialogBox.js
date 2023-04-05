@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
-import BoardIcon from './BoardIcon';
+import BoardIcon from '../BoardIcon';
 import styles from './styles.module.css';
 
 function DialogBox() {
