@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import EditBoardButton from './EditBoardButton';
+import AddNewTaskDialog from './AddNewTaskDialog';
 import styles from './styles.module.css';
 import icons from './icons'
 import {useSelector} from 'react-redux';
@@ -26,10 +27,8 @@ function HeaderBar() {
                     Platform Launch
                 </h1>                
             </section>
-            <section className={styles.header_addNewTask}>
-                <button className={styles.header_addNewTask_button} >
-                    + Add New Task
-                </button>    
+            <section className={styles.header_addNewTask}>   
+                <AddNewTaskDialog/>
                 <EditBoardButton/>
             </section>
         </header>
