@@ -13,18 +13,19 @@ function DialogBox() {
         setOpen(!open);
     }
 
-    //this is where i left off, 
     const handleSubmit = (e) => {
         e.preventDefault();
         const prevBoard = JSON.parse(localStorage.getItem('boards'));           //getting any previous boards from the local storage
         if(prevBoard){
             let columns = allBoardColumn.current.state;
-            let boards = JSON.stringify([...prevBoard, {boardName: boardName, columns: columns}]);             //grouping together the prevBoards and the new board into an array
+            let boardTitle = boardName.current.state;
+            let boards = JSON.stringify([...prevBoard, {boardName: boardTitle, columns: columns}]);             //grouping together the prevBoards and the new board into an array
             localStorage.setItem('boards', boards);
         }  
         else{
             let columns = allBoardColumn.current.state;
-            let newBoard = JSON.stringify([{boardName: boardName, columns: columns}])
+            let boardTitle = boardName.current.state;
+            let newBoard = JSON.stringify([{boardName: boardTitle, columns: columns}])
             localStorage.setItem('boards', newBoard);
         }
         const StorageEvent = new Event('StorageEvent');

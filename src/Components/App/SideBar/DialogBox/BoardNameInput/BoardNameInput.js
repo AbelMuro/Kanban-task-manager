@@ -14,7 +14,8 @@ const BoardNameInput = forwardRef((props, ref) => {
         }
     }))
 
-    return(                    
+    //this is where i left off
+    return (                    
         <fieldset className={styles.input_container}>
             <label className={styles.input_label} htmlFor='boardName'>
                 Board Name
