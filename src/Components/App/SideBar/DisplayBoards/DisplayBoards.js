@@ -52,7 +52,6 @@ function DisplayBoards() {
     return(
         <>
             {boards ? boards.map((board, i) => {
-                console.log(board);
                 return(
                     <div 
                         className={styles.sidebar_board} 

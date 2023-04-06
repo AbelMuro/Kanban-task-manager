@@ -5,6 +5,7 @@
     flex-direction: column;
     height: 63px;
     margin-bottom: 24px;
+    position: relative;
 }
 
 
@@ -39,4 +40,18 @@
 .input:focus{
     outline: none;
     border: 2px solid #635FC7;
+}
+
+.emptyMessage{
+    display: none;
+    color: #EA5555;
+    font-family: var(--font-jakarta);
+    font-size: 13px;
+    line-height: 23px;
+    font-weight: 500;
+    width: 97px;
+    height: 23px;
+    position: absolute;
+    right: 16px;
+    bottom: 8px;
 }

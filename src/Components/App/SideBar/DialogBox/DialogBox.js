@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
 import styles from './styles.module.css';
 import BoardNameInput from './BoardNameInput';
@@ -14,17 +14,16 @@ function DialogBox() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault;
         const prevBoard = JSON.parse(localStorage.getItem('boards'));           //getting any previous boards from the local storage
+        let columns = allBoardColumn.current.state;
+        let boardTitle = boardName.current.state;
+
         if(prevBoard){
-            let columns = allBoardColumn.current.state;
-            let boardTitle = boardName.current.state;
             let boards = JSON.stringify([...prevBoard, {boardName: boardTitle, columns: columns}]);             //grouping together the prevBoards and the new board into an array
             localStorage.setItem('boards', boards);
         }  
         else{
-            let columns = allBoardColumn.current.state;
-            let boardTitle = boardName.current.state;
             let newBoard = JSON.stringify([{boardName: boardTitle, columns: columns}])
             localStorage.setItem('boards', newBoard);
         }
@@ -32,6 +31,20 @@ function DialogBox() {
         document.dispatchEvent(StorageEvent);
         handleDialog();      
     }
+
+    useEffect(() => {
+        const handleKeyboard = (e) => {
+            if(e.target.matches('.MuiDialog-container'))
+                setOpen(false);
+        }
+
+        document.addEventListener('click', handleKeyboard)
+
+        return () => {
+            document.removeEventListender('click', handleKeyboard);
+        }
+
+    }, [])
 
     return(
         <>
@@ -46,7 +59,7 @@ function DialogBox() {
                     Add New Board
                 </DialogTitle>
                 <DialogContent className={styles.dialog_content}>
-                    <form onSubmit={handleSubmit} >
+                    <form onSubmit={handleSubmit}>
                         <BoardNameInput ref={boardName}/>
                         <ColumnInputs ref={allBoardColumn}/>
                         <input type='submit' className={styles.dialog_submit} value='Create New Board'/>
