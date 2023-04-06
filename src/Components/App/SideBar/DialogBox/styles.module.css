@@ -1,3 +1,7 @@
+.dialog{
+    background-color: var(--dialog-bg-color);
+}
+
 .sidebar_addBoardButton{
     border: none;
     background-color: transparent;
@@ -29,7 +33,7 @@
     font-size: var(--h2-font-size);
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
-    color: var(--dialog-text-color);
+    color: var(--dialog-title-text-color);
     padding: 32px 32px 24px 32px;
 }
 

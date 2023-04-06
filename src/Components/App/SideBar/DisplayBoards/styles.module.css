@@ -14,7 +14,7 @@
 }
 
 .icon{
-    fill: var(--sidebar-board-icon-color);
+    fill: #828FA3;
 }
 
 .iconContainer{
@@ -22,7 +22,7 @@
 }
 
 .sidebar_board:hover:not(.sidebar_board_active){
-    background-color: rgba(99, 95, 199, 0.1);
+    background-color: var(--sidebar-button-hover-bg);
     color: #635FC7;
 }
 

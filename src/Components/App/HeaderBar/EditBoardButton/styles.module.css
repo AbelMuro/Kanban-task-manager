@@ -1,0 +1,44 @@
+.selectBox{
+    position:relative;
+}
+.selectBox_popup{
+    position: absolute;
+    right: 0px;
+    bottom: -110px;
+    width: 192px;
+    height: 94px;
+    background-color: white;
+    box-shadow: 0px 10x 20px rgba(54, 78, 126, 0.25);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.selectBox_popup_option{
+    font-family: var(--font-jakarta);
+    font-size: var(--body-large-font-size);
+    font-weight: var(--body-large-font-weight);
+    line-height: var(--body-large-line-height);
+    cursor: pointer;
+}
+
+.selectBox_popup_option:first-child{
+    color: #828FA3;
+}
+
+.selectBox_popup_option:last-child{
+    color: #EA5555;
+}
+
+.selectBox_popup_option:hover{
+    text-decoration: underline;
+}
+
+
+.selectBox_threeDots_button{
+    height: 20px;
+    object-fit: contain;
+    cursor: pointer;
+}

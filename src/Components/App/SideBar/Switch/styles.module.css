@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.switch:hover{
+    background-color:#A8A4FF;
+}
+
 .handle{
     border-radius: 100%;
     width: 14px;

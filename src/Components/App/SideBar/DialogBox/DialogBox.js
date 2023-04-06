@@ -53,7 +53,11 @@ function DialogBox() {
                 </svg>        
                 +Create New Board
             </button>
-            <Dialog open={open}>
+            <Dialog open={open} PaperProps={{
+                            style: {
+                            backgroundColor: 'var(--dialog-bg-color)',
+                            },
+                        }}>
                 <DialogTitle className={styles.dialog_title}>
                     Add New Board
                 </DialogTitle>

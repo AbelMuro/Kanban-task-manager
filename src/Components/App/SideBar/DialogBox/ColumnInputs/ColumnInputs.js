@@ -9,8 +9,7 @@ const ColumnInputs = forwardRef((props, ref) => {
         columnContainer.remove();
     }    
 
-    //this is the problem, when an input is invalid, it will be auto focused and this function will be called
-    const handleFocus = (e) => {
+    const handleChange = (e) => {
         e.target.setCustomValidity('');
         const emptyMessage = e.target.nextElementSibling;
         const input = e.target;
@@ -30,7 +29,6 @@ const ColumnInputs = forwardRef((props, ref) => {
             emptyMessage.style.display = 'block';
             input.style.border = '1px solid #EA5555';
         }
-            
     }   
 
     const handleInvalid = (e) => {
@@ -52,9 +50,9 @@ const ColumnInputs = forwardRef((props, ref) => {
         newInput.setAttribute('class', styles.input);
         newInput.setAttribute('required', '');
         newInput.setAttribute('type', 'text');
-        newInput.addEventListener('focus', handleFocus);
         newInput.addEventListener('blur', handleBlur);
-        newInput.addEventListener('invalid', handleInvalid)
+        newInput.addEventListener('invalid', handleInvalid);     
+        newInput.addEventListener('change', handleChange);
         newCloseIcon.setAttribute('class', styles.input_close);
         newCloseIcon.setAttribute('src', icons['close']);
         newCloseIcon.addEventListener('click', handleDelete);
@@ -66,7 +64,7 @@ const ColumnInputs = forwardRef((props, ref) => {
         newInputContainer.append(newCloseIcon);
         allColumns.append(newInputContainer);
     }
-    //this is where i left off, allColumns is not an array at this point
+
     useImperativeHandle(ref, () => ({
         get state() {
             const allColumns = document.querySelectorAll('.' + styles.input);
@@ -87,7 +85,7 @@ const ColumnInputs = forwardRef((props, ref) => {
                         <input 
                             type='text' 
                             className={styles.input} 
-                            onFocus={handleFocus}
+                            onChange={handleChange}
                             onBlur={handleBlur} 
                             onInvalid={handleInvalid}
                             required/>
@@ -99,7 +97,7 @@ const ColumnInputs = forwardRef((props, ref) => {
                         <input 
                             type='text' 
                             className={styles.input} 
-                            onFocus={handleFocus}
+                            onChange={handleChange}
                             onBlur={handleBlur} 
                             onInvalid={handleInvalid}
                             required/>

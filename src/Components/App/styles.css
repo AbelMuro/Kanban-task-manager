@@ -10,22 +10,34 @@
     box-sizing: border-box;
 }
 
+.container{
+    display: flex;
+}
+
 fieldset{
     border: none;
 }
 
 :root{
     --body-bg: #F2F2F2;
+
     --sidebar-bg: white;
     --sidebar-switch-box: #F4F7FD;
     --sidebar-switch-icon-color: white;
-    --sidebar-board-icon-color: #828FA3;
-    --dialog-input-text-color: black;
+    --sidebar-button-hover-bg: rgba(99, 95, 199, 0.1);
+
+    --dialog-bg-color: white;
+    --dialog-input-text-color: #000112;
     --dialog-add-button: rgba(99, 95, 199, 0.1);
     --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
-    --dialog-text-color: #000112;
+    --dialog-title-text-color: #000112;
     --dialog-label-text-color: #828FA3;
 
+    --header-add-task-hover-button: #A8A4FF;
+    --header-title-text-color: #000112;
+
+    --closest: 50;
+    --farthest: 10;
 
     --font-jakarta: 'plus jakarta';
     --h1-font-size: 24px;
