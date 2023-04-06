@@ -9,6 +9,7 @@ const ColumnInputs = forwardRef((props, ref) => {
         columnContainer.remove();
     }    
 
+    //this is the problem, when an input is invalid, it will be auto focused and this function will be called
     const handleFocus = (e) => {
         e.target.setCustomValidity('');
         const emptyMessage = e.target.nextElementSibling;
@@ -34,6 +35,10 @@ const ColumnInputs = forwardRef((props, ref) => {
 
     const handleInvalid = (e) => {
         e.target.setCustomValidity(' ');
+        const emptyMessage = e.target.nextElementSibling;
+        const input = e.target;
+        emptyMessage.style.display = 'block';
+        input.style.border = '1px solid #EA5555';
     }
 
     const handleAddColumn = () => {

@@ -8,16 +8,14 @@ const BoardNameInput = forwardRef((props, ref) => {
 
     const handleBoardName = (e) => {
         setBoardName(e.target.value);
-    }
-
-    const handleFocus = () => {
         input.current.setCustomValidity('');             //removing the invalid state of the input element
         emptyMessage.current.style.display = '';
         input.current.style.border = '';
     }
 
+
     const handleInvalid = () => {
-        input.current.setCustomValidity('  ');            //removing the default popup for invalid inputs            //trying to ficure out why the default popup is not being removed
+        input.current.setCustomValidity(" ");            //removing the default popup for invalid inputs            //trying to ficure out why the default popup is not being removed
         emptyMessage.current.style.display = 'block';
         input.current.style.border = '1px solid #EA5555';
     }
@@ -52,14 +50,14 @@ const BoardNameInput = forwardRef((props, ref) => {
                 type='text'
                 className={styles.input} 
                 placeholder='e.g Web Design'
-                onFocus={handleFocus}
                 onBlur={handleBlur}
                 onInvalid={handleInvalid}
                 value={boardName}
                 onChange={handleBoardName}
                 id='boardName'
                 ref={input}
-                required/>
+                required
+                />
                 <div className={styles.emptyMessage} ref={emptyMessage}>
                     Can't be empty
                 </div>

@@ -26,7 +26,6 @@ function DisplayBoards() {
 
     //removing the purple background color from the previously selected board
     useEffect(() => {
-
         const allBoards = document.querySelectorAll('.' + styles.sidebar_board);
         allBoards.forEach((board) => {
             if(board.classList.contains(styles.sidebar_board_active)){
@@ -38,7 +37,6 @@ function DisplayBoards() {
 
     //adding a purple background color to the currently selected board
     useEffect(() => {
-
         const allBoards = document.querySelectorAll('.' + styles.sidebar_board);
         allBoards.forEach((board) => {
             const boardName = board.getAttribute('data-board');

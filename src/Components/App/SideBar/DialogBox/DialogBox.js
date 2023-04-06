@@ -14,7 +14,7 @@ function DialogBox() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault;
+        e.preventDefault();
         const prevBoard = JSON.parse(localStorage.getItem('boards'));           //getting any previous boards from the local storage
         let columns = allBoardColumn.current.state;
         let boardTitle = boardName.current.state;
@@ -43,7 +43,6 @@ function DialogBox() {
         return () => {
             document.removeEventListender('click', handleKeyboard);
         }
-
     }, [])
 
     return(
@@ -59,7 +58,7 @@ function DialogBox() {
                     Add New Board
                 </DialogTitle>
                 <DialogContent className={styles.dialog_content}>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className={styles.form}>
                         <BoardNameInput ref={boardName}/>
                         <ColumnInputs ref={allBoardColumn}/>
                         <input type='submit' className={styles.dialog_submit} value='Create New Board'/>
