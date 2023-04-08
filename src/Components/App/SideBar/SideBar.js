@@ -1,5 +1,5 @@
 import React, {useRef, useState, useEffect} from 'react';
-import DialogBox from './DialogBox';
+import AddBoardDialog from './AddBoardDialog';
 import Switch from './Switch';
 import styles from './styles.module.css';
 import HideShowIcon from './HideShowIcon';
@@ -34,7 +34,7 @@ function SideBar() {
     }, [showSidebar])
 
     useEffect(() => {
-        dispatch({type: 'set', show: showSidebar});
+        dispatch({type: 'set sidebar', show: showSidebar});
     }, [showSidebar])
 
     return(
@@ -47,7 +47,7 @@ function SideBar() {
                             ALL BOARDS 8
                         </h4>
                         <DisplayBoards/>
-                        <DialogBox/>
+                        <AddBoardDialog/>
                     </div>                 
                 </section>
 

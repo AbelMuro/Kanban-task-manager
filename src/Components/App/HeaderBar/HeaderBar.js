@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import EditBoardButton from './EditBoardButton';
 import AddNewTaskDialog from './AddNewTaskDialog';
+import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons'
-import {useSelector} from 'react-redux';
 
 function HeaderBar() {
     const showSidebar = useSelector(state => state.showSidebar);
@@ -18,6 +18,8 @@ function HeaderBar() {
             platformLaunchTitle.style.left = '' 
 
     }, [showSidebar])
+
+
 
     return(
         <header className={styles.header}>

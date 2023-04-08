@@ -27,11 +27,13 @@ fieldset{
     --sidebar-button-hover-bg: rgba(99, 95, 199, 0.1);
 
     --dialog-bg-color: white;
+    --dialog-select-box-bg: white;  
     --dialog-input-text-color: #000112;
     --dialog-add-button: rgba(99, 95, 199, 0.1);
     --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
     --dialog-title-text-color: #000112;
     --dialog-label-text-color: #828FA3;
+
 
     --header-bg-color: white;
     --header-add-task-hover-button: #A8A4FF;

@@ -1,8 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
+import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
 
 function EditBoardButton() {
+    const currentBoard = useSelector(state => state.board);
     const [displayPopup, setDisplayPopup] = useState(false);
     const popup = useRef();
 
