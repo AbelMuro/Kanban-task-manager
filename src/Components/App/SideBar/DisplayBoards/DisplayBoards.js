@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useLocalStorage from '../../useLocalStorage';
 import {v4 as uuid} from 'uuid';
 import styles from './styles.module.css';
@@ -28,10 +28,11 @@ function DisplayBoards() {
 
     //this will select the very first board that is added to the board list
     useEffect(() => {
-        if(boards.length == 1)
+        if(boards.length)
             setChoosenBoard(boards[0].boardName);
 
     }, [boards])
+
 
 
     //removing the purple background color from the previously selected board
@@ -43,7 +44,7 @@ function DisplayBoards() {
                 boardIconRefs.current[board.id].style.fill = '';
             }
         })
-    }, [choosenBoard])
+    }, [choosenBoard, boards])
 
     //adding a purple background color to the currently selected board
     useEffect(() => {
@@ -55,11 +56,10 @@ function DisplayBoards() {
                 boardIconRefs.current[board.id].style.fill = 'white';
             }
         })
-    }, [choosenBoard])
+    }, [choosenBoard, boards])
 
     //dispatching an action that contains the selected board to display to the reducer
     useEffect(() => {
-        
         let boardToDispatch = null;
         boards.forEach((board) => {
             if(board.boardName == choosenBoard)

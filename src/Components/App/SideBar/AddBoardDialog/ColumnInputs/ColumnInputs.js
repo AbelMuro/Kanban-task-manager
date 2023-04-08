@@ -41,12 +41,16 @@ const ColumnInputs = forwardRef((props, ref) => {
 
     const handleAddColumn = () => {
         const allColumns = document.querySelector('.' + styles.column_allColumns);
+        if(allColumns.childNodes.length == 5)
+            return;
         const newInputContainer = document.createElement('div');
+        const newFieldset = document.createElement('fieldset');
         const newInput = document.createElement('input');
-        const newCloseIcon = document.createElement('img');
+        const newCloseIcon = document.createElement('div');
         const emptyMessage = document.createElement('div');
 
         newInputContainer.setAttribute('class', styles.input_container);
+        newFieldset.setAttribute('class', styles.input_fieldset);
         newInput.setAttribute('class', styles.input);
         newInput.setAttribute('required', '');
         newInput.setAttribute('type', 'text');
@@ -54,13 +58,13 @@ const ColumnInputs = forwardRef((props, ref) => {
         newInput.addEventListener('invalid', handleInvalid);     
         newInput.addEventListener('change', handleChange);
         newCloseIcon.setAttribute('class', styles.input_close);
-        newCloseIcon.setAttribute('src', icons['close']);
         newCloseIcon.addEventListener('click', handleDelete);
         emptyMessage.setAttribute('class', styles.emptyMessage);
         emptyMessage.innerHTML = "Can't be empty";
 
-        newInputContainer.append(newInput);
-        newInputContainer.append(emptyMessage);
+        newFieldset.append(newInput);
+        newFieldset.append(emptyMessage);
+        newInputContainer.append(newFieldset);
         newInputContainer.append(newCloseIcon);
         allColumns.append(newInputContainer);
     }
@@ -78,32 +82,37 @@ const ColumnInputs = forwardRef((props, ref) => {
     return(             
             <fieldset className={styles.column_container}>
                 <h3 className={styles.column_label}>
-                    {'Columns (min 2)'}
+                    {'Columns (min: 1/ max: 5)'}
                 </h3>        
                 <div className={styles.column_allColumns}>
                     <div className={styles.input_container}>
-                        <input 
-                            type='text' 
-                            className={styles.input} 
-                            onChange={handleChange}
-                            onBlur={handleBlur} 
-                            onInvalid={handleInvalid}
-                            required/>
-                        <div className={styles.emptyMessage}>
-                            Can't be empty
-                        </div>
+                        <fieldset className={styles.input_fieldset}>
+                            <input 
+                                type='text' 
+                                className={styles.input} 
+                                onChange={handleChange}
+                                onBlur={handleBlur} 
+                                onInvalid={handleInvalid}
+                                required/>
+                            <div className={styles.emptyMessage}>
+                                Can't be empty
+                            </div>                            
+                        </fieldset>
                     </div>
                     <div className={styles.input_container}>
-                        <input 
-                            type='text' 
-                            className={styles.input} 
-                            onChange={handleChange}
-                            onBlur={handleBlur} 
-                            onInvalid={handleInvalid}
-                            required/>
-                        <div className={styles.emptyMessage}>
-                            Can't be empty
-                        </div>
+                        <fieldset className={styles.input_fieldset}>
+                            <input 
+                                type='text' 
+                                className={styles.input} 
+                                onChange={handleChange}
+                                onBlur={handleBlur} 
+                                onInvalid={handleInvalid}
+                                required/>
+                            <div className={styles.emptyMessage}>
+                                Can't be empty
+                            </div>                            
+                        </fieldset>
+                        <div className={styles.input_close} onClick={handleDelete}></div>
                     </div>
                 </div>            
                 <button type='button' className={styles.column_addButton} onClick={handleAddColumn}>

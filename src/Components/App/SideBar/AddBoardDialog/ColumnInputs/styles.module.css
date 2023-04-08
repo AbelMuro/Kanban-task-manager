@@ -47,7 +47,12 @@
 .input_container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 16px;
+    position: relative;
+}
+
+.input_fieldset{
     position: relative;
 }
 
@@ -73,9 +78,16 @@
 }
 .input_close{
     width: 15px;
-    object-fit: contain;
+    height: 15px;
+    mask: url('./icons/icon-cross.svg');
+    -webkit-mask: url('./icons/icon-cross.svg');
     cursor: pointer;
+    background-color: #828FA3;
 }
+.input_close:hover{
+    background-color: #EA5555;
+}
+
 
 .emptyMessage{
     display: none;
@@ -87,7 +99,7 @@
     line-height: 23px;
     font-weight: 500;
     position: absolute;
-    right: 56px;
+    right: 16px;
     top: 0;
     bottom: 0;
     margin: auto;

@@ -44,13 +44,15 @@ function AddNewTaskDialog() {
             <button className={styles.addNewTask_button} onClick={handleClick}>
                 + Add New Task
             </button>         
-            <Dialog open={open} PaperProps={{ sx: { overflowY: 'initial'} }}>
-                <DialogTitle className={styles.dialogTitle}>
+            <Dialog open={open} PaperProps={{ sx: { overflowY: 'initial'}, style: {
+                            backgroundColor: 'var(--dialog-bg-color)',
+                            }}}>
+                <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_h1}>    {/* i had to use <span> instead of <h2> because <DialogTitle> gets transpiled into <h2>*/}
                         Add New Task
                     </span>
                 </DialogTitle>
-                <DialogContent className={styles.dialogContent}>
+                <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 24px 32px'}}>
                     <form>
                         <TitleInput/>
                         <DescriptionInput/>
@@ -62,7 +64,6 @@ function AddNewTaskDialog() {
                             value='Create Task'
                         />                  
                     </form>
-
                 </DialogContent>
             </Dialog>
         </>  

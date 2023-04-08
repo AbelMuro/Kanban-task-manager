@@ -19,7 +19,7 @@ fieldset{
 }
 
 :root{
-    --body-bg: #F2F2F2;
+    --body-bg: #F4F7FD;
 
     --sidebar-bg: white;
     --sidebar-switch-box: #F4F7FD;
@@ -29,6 +29,7 @@ fieldset{
     --dialog-bg-color: white;
     --dialog-select-box-bg: white;  
     --dialog-input-text-color: #000112;
+    --dialog-input-bg-color: white;
     --dialog-add-button: rgba(99, 95, 199, 0.1);
     --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
     --dialog-title-text-color: #000112;
@@ -71,4 +72,9 @@ fieldset{
 
 body{
     background-color: var(--body-bg);
+}
+
+input{
+    background-color: var(--dialog-input-bg-color);
+    transition: none;
 }

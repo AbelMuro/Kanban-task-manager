@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import styles from './styles.module.css';
 import icons from './icons';
 
-//i will need to find a way to have the AddSubTasks and this component to communicate
+
 function StatusSelectBox() {
     const [option, setOption] = useState('Todo');
     const [openPopup, setOpenPopup] = useState(false);
@@ -17,12 +17,20 @@ function StatusSelectBox() {
         setOption(choosenOption);
     }
 
-//this will make the popup appear
+//this will make the popup appear when the user clicks on the select box
     useEffect(() => {
         if(openPopup)
             popup.current.style.display = 'flex';
         else
             popup.current.style.display = '';
+    }, [openPopup])
+
+    useEffect(() => {
+        const dialogContent = document.querySelector('.MuiDialogContent-root');
+
+        if(openPopup)
+            dialogContent.scrollTo(0, dialogContent.scrollHeight)
+
     }, [openPopup])
 
 //adding an event listener that will close the popup when the user clicks on anything BUT the popup
@@ -43,9 +51,6 @@ function StatusSelectBox() {
         }
     }, [openPopup])
 
-    useEffect(() => {
-        console.log(getComputedStyle(document.querySelector('.MuiDialogContent-root')).width)
-    })
 
     return(
         <section className={styles.select}>
@@ -62,6 +67,12 @@ function StatusSelectBox() {
                 </button>
                 <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Doing'>
                     Doing
+                </button>
+                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
+                    Done
+                </button>
+                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
+                    Done
                 </button>
                 <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
                     Done

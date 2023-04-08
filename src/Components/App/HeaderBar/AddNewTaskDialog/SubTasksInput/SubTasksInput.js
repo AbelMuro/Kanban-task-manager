@@ -75,7 +75,7 @@ function SubTasksInput() {
     return(
         <section className={styles.inputContainer}>
             <h5 className={styles.inputContainer_title}>
-                {'Subtasks (min 2)'}
+                {'Subtasks (min: 1)'}
             </h5>
             <section className={styles.inputContainer_subtasks}>
                 <div className={styles.inputContainer_subtask}>
@@ -107,8 +107,10 @@ function SubTasksInput() {
                                 /> 
                             <div className={styles.emptyMessage}>
                                 Can't be empty
-                            </div>   
-                    </fieldset>                     
+                            </div>  
+                            
+                    </fieldset>   
+                    <div className={styles.inputContainer_subtask_closeIcon} onClick={handleDelete}></div>                   
                 </div>
             </section>
 

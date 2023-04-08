@@ -1,0 +1,28 @@
+.editBoard_button{
+    font-family: var(--font-jakarta);
+    font-size: var(--body-large-font-size);
+    font-weight: var(--body-large-font-weight);
+    line-height: var(--body-large-line-height);
+    cursor: pointer;
+    color: #828FA3;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+}
+
+
+.editBoard_button:hover{
+    text-decoration: underline;
+}
+
+.dialogTitle_title{
+    font-family: var(--font-jakarta);
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    line-height: var(--h2-line-height);
+    color: var(--dialog-title-text-color);
+}
+
+.dialogContent{
+    width: 480px;
+}

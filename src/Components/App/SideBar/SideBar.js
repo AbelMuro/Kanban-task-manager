@@ -33,6 +33,7 @@ function SideBar() {
             sidebar.current.style.left = '-300px';        
     }, [showSidebar])
 
+//this will dispatch an action to the reducer, telling all components that the sidebar is hidden or visible
     useEffect(() => {
         dispatch({type: 'set sidebar', show: showSidebar});
     }, [showSidebar])

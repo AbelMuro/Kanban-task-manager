@@ -20,7 +20,6 @@ function HeaderBar() {
     }, [showSidebar])
 
 
-
     return(
         <header className={styles.header}>
             <section className={styles.header_kanban}>

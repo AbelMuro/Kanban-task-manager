@@ -61,7 +61,7 @@ function DialogBox() {
                 <DialogTitle className={styles.dialog_title}>
                     Add New Board
                 </DialogTitle>
-                <DialogContent className={styles.dialog_content}>
+                <DialogContent className={styles.dialog_content} sx={{padding: '0px 32px 32px 32px'}}>
                     <form onSubmit={handleSubmit} className={styles.form}>
                         <BoardNameInput ref={boardName}/>
                         <ColumnInputs ref={allBoardColumn}/>

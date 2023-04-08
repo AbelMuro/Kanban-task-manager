@@ -1,10 +1,10 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useSelector} from 'react-redux';
+import DeleteBoardDialog from './DeleteBoardDialog';
+import EditBoardDialog from './EditBoardDialog';
 import styles from './styles.module.css';
 import icons from './icons';
 
 function EditBoardButton() {
-    const currentBoard = useSelector(state => state.board);
     const [displayPopup, setDisplayPopup] = useState(false);
     const popup = useRef();
 
@@ -42,12 +42,8 @@ function EditBoardButton() {
                 className={styles.selectBox_threeDots_button} 
                 onClick={handlePopup}/>
             <div className={styles.selectBox_popup} ref={popup}>
-                <a className={styles.selectBox_popup_option}>
-                    Edit Board
-                </a>
-                <a className={styles.selectBox_popup_option}>
-                    Delete Board
-                </a>
+                <EditBoardDialog/>
+                <DeleteBoardDialog />
             </div>
         </section>                
 
