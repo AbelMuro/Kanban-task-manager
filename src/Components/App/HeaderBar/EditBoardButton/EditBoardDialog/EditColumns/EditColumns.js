@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 
 
 //create an onBlur handler, onInvalid handler, and onClick handler for the input
+//and the error message as well!
 function EditColumns() {
     return(
         <section className={styles.allColumns}>
