@@ -3,13 +3,14 @@ import TitleInput from './TitleInput';
 import DescriptionInput from './DescriptionInput';
 import SubTasksInput from './SubTasksInput';
 import StatusSelectBox from './StatusSelectBox';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
 import styles from './styles.module.css';
 
 
 function AddNewTaskDialog() {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch();
     const currentBoard = useSelector(state => state.board);
     const taskTitle = useRef();            //these refs all contain new data that will be used to replace old data from a specific board
     const taskDesc = useRef();
@@ -21,38 +22,42 @@ function AddNewTaskDialog() {
     }   
 
 
-//updating the local storage 
+//updating the local storage and dispatching an action to reducer
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const updatedBoard = currentBoard.columns.map((column) => {      
+        //updating the local state with the new tasks
+        const updatedColumns = currentBoard.columns.map((column) => {      
             if(column.columnTitle == subtaskColumn.current.state){
                 return {columnTitle: column.columnTitle, 
                     tasks: [...column.tasks, {
                         taskTitle : taskTitle.current.state,
                         description :  taskDesc.current.state,
                         subTasks : subtasks.current.state,
-                }] }
+                }]}
             }
             else 
                 return column;
         })
-        //rememebr that updatedBoard is returning the column property ONLY and not the boardName
-        console.log(updatedBoard);
 
+        //updating local storage
         const allBoards = JSON.parse(localStorage.getItem('boards'));
-
-        allBoards.forEach((oldBoard) => {
-            if(oldBoard.boardName == updatedBoard.boardName)
-                return updatedBoard
-            else
-                return oldBoard;
-
+        allBoards.forEach((oldBoard, i, origBoards) => {
+            if(oldBoard.boardName == currentBoard.boardName)
+                origBoards[i] = {boardName: currentBoard.boardName, columns: updatedColumns}
         })
+        localStorage.setItem('boards', JSON.stringify(allBoards));
 
-        console.log(allBoards);
+        //dispatching an event that will re-render components that rely on changes in local storage
+        const StorageEvent = new Event('UpdateStorage');
+        document.dispatchEvent(StorageEvent);
 
+        //dispatching an action to the reducer
+        dispatch({type: 'set board', board : {boardName: currentBoard.boardName, columns: updatedColumns}});
+    
+        setOpen(false);
     }
+
 
     useEffect(() => {
         const button = document.querySelector('.' + styles.addNewTask_button);

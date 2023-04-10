@@ -51,7 +51,6 @@ function SideBar() {
                         <AddBoardDialog/>
                     </div>                 
                 </section>
-
                 <section className={styles.sidebar_bottom}>
                     <Switch/>
                     <button 

@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, memo} from 'react';
 import {useDispatch} from 'react-redux';
-import useLocalStorage from '../../useLocalStorage';
+import useLocalStorage from './useLocalStorage';
 import {v4 as uuid} from 'uuid';
 import styles from './styles.module.css';
 
@@ -94,4 +94,4 @@ function DisplayBoards() {
     )
 }
 
-export default DisplayBoards;
+export default memo(DisplayBoards);

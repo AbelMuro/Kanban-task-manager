@@ -1,6 +1,7 @@
 import React from 'react';
 import HeaderBar from './HeaderBar';
 import SideBar from './SideBar';
+import BoardColumns from './BoardColumns';
 import {Provider} from 'react-redux';
 import Store from './Store';
 import './styles.css';
@@ -11,6 +12,7 @@ function App() {
             <main>
                 <HeaderBar/>
                 <SideBar/>    
+                <BoardColumns/>
             </main>            
         </Provider>
     )
