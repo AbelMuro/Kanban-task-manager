@@ -32,8 +32,9 @@ function EditBoardDialog(){
         
         const StorageEvent = new Event('UpdateStorage');        
         document.dispatchEvent(StorageEvent);     
-        //this is the problem
+
         dispatch({type: 'set board', board : {boardName: newBoardName.current.state, columns: newColumns.current.columns}});
+
     }
 
     useEffect(() => {
@@ -73,7 +74,7 @@ function EditBoardDialog(){
                 <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 24px 32px'}}>
                     <form onSubmit={handleSubmit}>
                         <BoardNameInput ref={newBoardName}/>
-                        <EditColumns ref={newColumns} /> 
+                        {board ? <EditColumns ref={newColumns} columns={board.columns}/> : <></> }
                         <input type='submit' className={styles.dialogContent_submit} value='Save Changes'/>
                     </form>
                 </DialogContent>
