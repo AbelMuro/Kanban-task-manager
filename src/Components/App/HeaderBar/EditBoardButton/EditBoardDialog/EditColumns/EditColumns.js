@@ -6,6 +6,7 @@ import {v4 as uuid} from 'uuid';
 //i need to find a way to keep the text in the inputs the same after there is a render
 const EditColumns = forwardRef(({columns}, ref) => {
     const [allColumns, setAllColumns] = useState(columns);
+    console.log(allColumns);
 
     const handleColumn = () => {
         const allColumns = document.querySelector('.' + styles.allColumns_columns);
@@ -17,7 +18,7 @@ const EditColumns = forwardRef(({columns}, ref) => {
         })
     }
 
-    const updateColumn = (id) => {
+    const deleteColumn = (id) => {
         setAllColumns((prevColumns) => {
             return prevColumns.filter((column, index) => {
                 if(index == id)
@@ -28,7 +29,18 @@ const EditColumns = forwardRef(({columns}, ref) => {
         })
     }
 
-    //this hook will get all the values of all the inputs in this component
+    const updateColumn = (id, state) => {
+        setAllColumns((prevColumns) => {
+            return prevColumns.map((column, index) => {
+                if(index == id)
+                   return state;
+                else
+                    return column;
+            })
+        })
+    }
+
+    //i will need to update this hook to pass the state from this component to the onSubmit handler 
     useImperativeHandle(ref, () => ({
         get columns() {
             const allInputs = document.querySelectorAll('.' + styles.inputContainers_input);
@@ -46,7 +58,7 @@ const EditColumns = forwardRef(({columns}, ref) => {
             <div className={styles.allColumns_columns}>
                 {allColumns.map((column, i) => {
                     return (
-                        <Column defaultValue={column} id={i} updateColumn={updateColumn} key={uuid()}/>
+                        <Column updateColumn={updateColumn} deleteColumn={deleteColumn} defaultValue={column} id={i}  key={uuid()}/>
                     )
                 })}
             </div>

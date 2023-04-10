@@ -1,12 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, memo} from 'react';
 import styles from './styles.module.css';
 
-function Column({defaultValue, id, updateColumn}) {
+function Column({defaultValue, id, updateColumn, deleteColumn}) {
     const [close, setClose] = useState(false);
+    const [text, setText] = useState(defaultValue ? defaultValue : '')
 
 
     const handleDelete = (e) => {
         setClose(true);
+    }
+
+    const handleChange = (e) => {
+        setText(e.target.value)
+        updateColumn(id, e.target.value);
     }
 
     const handleClick = (e) => {
@@ -45,7 +51,7 @@ function Column({defaultValue, id, updateColumn}) {
 
     useEffect(() => {
         if(close){
-            updateColumn(id);
+            deleteColumn(id);
         }
             
     }, [close])
@@ -59,7 +65,8 @@ function Column({defaultValue, id, updateColumn}) {
                         onBlur={handleBlur}
                         onInvalid={handleInvalid}
                         onClick={handleClick}
-                        defaultValue={defaultValue ? defaultValue : ''}
+                        value={text}
+                        onChange={handleChange}
                         required
                         />
                     <p className={styles.inputContainer_emptyMessage}>
@@ -71,4 +78,4 @@ function Column({defaultValue, id, updateColumn}) {
         )
 }
 
-export default Column;
+export default memo(Column);
