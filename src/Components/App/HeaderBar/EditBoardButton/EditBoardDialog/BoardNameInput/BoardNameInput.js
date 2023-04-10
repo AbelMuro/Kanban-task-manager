@@ -1,8 +1,10 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, forwardRef, useImperativeHandle, memo} from 'react';
+import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 
-function BoardNameInput() {
-    const [text, setText] = useState('');
+const BoardNameInput = forwardRef((props, ref) => {
+    const board = useSelector(state => state.board);    
+    const [text, setText] = useState(board.boardName);
     const input = useRef();
     const emptyMessage = useRef();
 
@@ -34,6 +36,12 @@ function BoardNameInput() {
         emptyMessage.current.style.display = 'block' 
     }
 
+    useImperativeHandle(ref, () => ({
+        get state() {
+            return text;
+        }
+    }))
+
     return(                        
         <fieldset className={styles.inputContainer}>
             <label className={styles.inputContainer_label}>
@@ -54,6 +62,6 @@ function BoardNameInput() {
             </div>                   
         </fieldset>
     )
-}
+})
 
-export default BoardNameInput;
+export default memo(BoardNameInput);

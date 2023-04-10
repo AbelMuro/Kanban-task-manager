@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import useLocalStorage from '../../useLocalStorage';
 import {v4 as uuid} from 'uuid';
 import styles from './styles.module.css';

@@ -1,6 +1,5 @@
 import React, {forwardRef, useImperativeHandle} from 'react';
 import styles from './styles.module.css';
-import icons from './icons';
 
 const ColumnInputs = forwardRef((props, ref) => {
 
@@ -76,13 +75,13 @@ const ColumnInputs = forwardRef((props, ref) => {
                 return columnTitle.value;
             })
         }
-    }))
+    }), [])
 
 
     return(             
             <fieldset className={styles.column_container}>
                 <h3 className={styles.column_label}>
-                    {'Columns (min: 1/ max: 5)'}
+                    {'Columns (max: 5)'}
                 </h3>        
                 <div className={styles.column_allColumns}>
                     <div className={styles.input_container}>
@@ -98,6 +97,7 @@ const ColumnInputs = forwardRef((props, ref) => {
                                 Can't be empty
                             </div>                            
                         </fieldset>
+                        <div className={styles.input_close} onClick={handleDelete}></div>
                     </div>
                     <div className={styles.input_container}>
                         <fieldset className={styles.input_fieldset}>

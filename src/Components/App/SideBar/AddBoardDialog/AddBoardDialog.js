@@ -15,6 +15,8 @@ function DialogBox() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        handleDialog();
+
         const prevBoard = JSON.parse(localStorage.getItem('boards'));           //getting any previous boards from the local storage
         let columns = allBoardColumn.current.state;
         let boardTitle = boardName.current.state;
@@ -27,21 +29,20 @@ function DialogBox() {
             let newBoard = JSON.stringify([{boardName: boardTitle, columns: columns}])
             localStorage.setItem('boards', newBoard);
         }
-        const StorageEvent = new Event('StorageEvent');
-        document.dispatchEvent(StorageEvent);
-        handleDialog();      
+
+        const StorageEvent = new Event('UpdateStorage');
+        document.dispatchEvent(StorageEvent); 
     }
 
     useEffect(() => {
-        const handleKeyboard = (e) => {
+        const handleClick = (e) => {
             if(e.target.matches('.MuiDialog-container'))
                 setOpen(false);
         }
 
-        document.addEventListener('click', handleKeyboard)
-
+        document.addEventListener('click', handleClick)
         return () => {
-            document.removeEventListender('click', handleKeyboard);
+            document.removeEventListener('click', handleClick);
         }
     }, [])
 
