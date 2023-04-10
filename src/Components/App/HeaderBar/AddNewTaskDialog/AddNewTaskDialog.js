@@ -11,7 +11,7 @@ import styles from './styles.module.css';
 function AddNewTaskDialog() {
     const [open, setOpen] = useState(false);
     const currentBoard = useSelector(state => state.board);
-    const taskTitle = useRef();
+    const taskTitle = useRef();            //these refs all contain new data that will be used to replace old data from a specific board
     const taskDesc = useRef();
     const subtasks = useRef();
     const subtaskColumn = useRef();
@@ -21,23 +21,34 @@ function AddNewTaskDialog() {
     }   
 
 
-//this is where i left off
+//updating the local storage 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const updatedBoard = currentBoard.columns.map((column) => {
-            if(column == subtaskColumn.current.state){
-                column.tasks.push({
-                    taskTitle : taskTitle.current.state,
-                    description :  taskDesc.current.state,
-                    subTasks : subtasks.current.state,
-                })
+        const updatedBoard = currentBoard.columns.map((column) => {      
+            if(column.columnTitle == subtaskColumn.current.state){
+                return {columnTitle: column.columnTitle, 
+                    tasks: [...column.tasks, {
+                        taskTitle : taskTitle.current.state,
+                        description :  taskDesc.current.state,
+                        subTasks : subtasks.current.state,
+                }] }
             }
             else 
                 return column;
         })
+        //rememebr that updatedBoard is returning the column property ONLY and not the boardName
+        console.log(updatedBoard);
 
         const allBoards = JSON.parse(localStorage.getItem('boards'));
+
+        allBoards.forEach((oldBoard) => {
+            if(oldBoard.boardName == updatedBoard.boardName)
+                return updatedBoard
+            else
+                return oldBoard;
+
+        })
 
         console.log(allBoards);
 
