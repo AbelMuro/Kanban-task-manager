@@ -37,8 +37,9 @@ function DeleteBoardDialog() {
     useEffect(() => {
         if(!deleteBoard) return;
 
-        const storageEvent = new Event('StorageEvent');        
-        document.dispatchEvent(storageEvent);     
+        const storageEvent = new Event('UpdateStorage');        
+        document.dispatchEvent(storageEvent);  
+
     }, [deleteBoard])
 
     //we dispatch an action to the reducer, the action will remove the current board
@@ -48,6 +49,7 @@ function DeleteBoardDialog() {
         dispatch({type: 'set board', board: null})
     }, [deleteBoard])
 
+   //reseting the state to false because this component doesnt get removed from the DOM 
     useEffect(() => {
         if(deleteBoard)
             setDeleteBoard(false);

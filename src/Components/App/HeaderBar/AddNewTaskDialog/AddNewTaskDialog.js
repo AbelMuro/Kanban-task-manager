@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import TitleInput from './TitleInput';
 import DescriptionInput from './DescriptionInput';
 import SubTasksInput from './SubTasksInput';
@@ -11,15 +11,42 @@ import styles from './styles.module.css';
 function AddNewTaskDialog() {
     const [open, setOpen] = useState(false);
     const currentBoard = useSelector(state => state.board);
+    const taskTitle = useRef();
+    const taskDesc = useRef();
+    const subtasks = useRef();
+    const subtaskColumn = useRef();
 
     const handleClick = () => {
         setOpen(!open);
     }   
 
+
+//this is where i left off
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const updatedBoard = currentBoard.columns.map((column) => {
+            if(column == subtaskColumn.current.state){
+                column.tasks.push({
+                    taskTitle : taskTitle.current.state,
+                    description :  taskDesc.current.state,
+                    subTasks : subtasks.current.state,
+                })
+            }
+            else 
+                return column;
+        })
+
+        const allBoards = JSON.parse(localStorage.getItem('boards'));
+
+        console.log(allBoards);
+
+    }
+
     useEffect(() => {
         const button = document.querySelector('.' + styles.addNewTask_button);
 
-        if(currentBoard) 
+        if(currentBoard && currentBoard.columns.length) 
             button.disabled = false;
         else
             button.disabled = true;
@@ -53,11 +80,11 @@ function AddNewTaskDialog() {
                     </span>
                 </DialogTitle>
                 <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 24px 32px'}}>
-                    <form>
-                        <TitleInput/>
-                        <DescriptionInput/>
-                        <SubTasksInput/>
-                        <StatusSelectBox/>     
+                    <form onSubmit={handleSubmit}>
+                        <TitleInput ref={taskTitle}/>
+                        <DescriptionInput ref={taskDesc}/>
+                        <SubTasksInput ref={subtasks}/>
+                        <StatusSelectBox ref={subtaskColumn}/>     
                         <input 
                             type='submit' 
                             className={styles.dialogContent_submit}

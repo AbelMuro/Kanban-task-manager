@@ -72,7 +72,7 @@ const ColumnInputs = forwardRef((props, ref) => {
         get state() {
             const allColumns = document.querySelectorAll('.' + styles.input);
             return Array.from(allColumns).map((columnTitle) => {
-                return columnTitle.value;
+                return {columnTitle: columnTitle.value, tasks: []};
             })
         }
     }), [])

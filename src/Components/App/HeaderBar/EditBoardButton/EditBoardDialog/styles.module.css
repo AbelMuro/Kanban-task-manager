@@ -15,6 +15,7 @@
     text-decoration: underline;
 }
 
+
 .editBoard_button:disabled{
     color: rgba(130, 143, 163, 0.3)
 }

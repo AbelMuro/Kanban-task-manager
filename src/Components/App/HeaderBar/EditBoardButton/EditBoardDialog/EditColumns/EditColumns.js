@@ -3,11 +3,11 @@ import Column from './Column';
 import styles from './styles.module.css';
 import {v4 as uuid} from 'uuid';
 
-//i need to find a way to keep the text in the inputs the same after there is a render
-const EditColumns = forwardRef(({columns}, ref) => {
-    const [allColumns, setAllColumns] = useState(columns);
-    console.log(allColumns);
 
+const EditColumns = forwardRef(({columns}, ref) => {
+    const [allColumns, setAllColumns] = useState(columns);  //columns : [{columnTitle: '', tasks: []}, {columnTitle: '', tasks: []}]
+
+    //this function will add a new element to the array(state), which in turn will also add a new <Column/> that corresponds to that element
     const handleColumn = () => {
         const allColumns = document.querySelector('.' + styles.allColumns_columns);
         if(allColumns.childNodes.length >= 5)
@@ -18,6 +18,7 @@ const EditColumns = forwardRef(({columns}, ref) => {
         })
     }
 
+    //this function will remove an element of the array(state) that corresponds to one of the <Column/> components
     const deleteColumn = (id) => {
         setAllColumns((prevColumns) => {
             return prevColumns.filter((column, index) => {
@@ -29,24 +30,21 @@ const EditColumns = forwardRef(({columns}, ref) => {
         })
     }
 
+    //this function will update an element of the array(state) that corresponds to one of the <Column/> components
     const updateColumn = (id, state) => {
         setAllColumns((prevColumns) => {
             return prevColumns.map((column, index) => {
                 if(index == id)
-                   return state;
+                   return {columnTitle: state, tasks: column.tasks};
                 else
                     return column;
             })
         })
     }
 
-    //i will need to update this hook to pass the state from this component to the onSubmit handler 
     useImperativeHandle(ref, () => ({
-        get columns() {
-            const allInputs = document.querySelectorAll('.' + styles.inputContainers_input);
-            return Array.from(allInputs).map((column) => {
-                return column.value;
-            })
+        get state() {
+            return allColumns;
         }
     }))
 
@@ -57,8 +55,9 @@ const EditColumns = forwardRef(({columns}, ref) => {
             </h5>
             <div className={styles.allColumns_columns}>
                 {allColumns.map((column, i) => {
+                    //we pass an index of the array(state) to the <Column/>, this will help us identify the component to an element in the array(state)
                     return (
-                        <Column updateColumn={updateColumn} deleteColumn={deleteColumn} defaultValue={column} id={i}  key={uuid()}/>
+                        <Column updateColumn={updateColumn} deleteColumn={deleteColumn} defaultValue={column.columnTitle} id={i} key={uuid()}/>
                     )
                 })}
             </div>

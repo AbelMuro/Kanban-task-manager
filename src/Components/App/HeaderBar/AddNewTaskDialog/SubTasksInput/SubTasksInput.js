@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {forwardRef, useImperativeHandle} from 'react';
 import styles from './styles.module.css';
 
 
-function SubTasksInput() {
+const SubTasksInput = forwardRef((props, ref) => {
 
     const handleBlur = (e) => {
         const isValid = e.target.checkValidity();
@@ -72,6 +72,16 @@ function SubTasksInput() {
     }
 
 
+    useImperativeHandle(ref, () => ({
+        get state(){
+            const allInputs = document.querySelectorAll('.' + styles.inputContainer_subtask_input);
+
+            return Array.from(allInputs).map((input) => {
+                return input.value
+            })  
+        }
+    }))
+
     return(
         <section className={styles.inputContainer}>
             <h5 className={styles.inputContainer_title}>
@@ -122,6 +132,6 @@ function SubTasksInput() {
             </button>
         </section>
     )
-}
+})
 
 export default SubTasksInput;

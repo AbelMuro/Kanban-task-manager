@@ -1,10 +1,12 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
+import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
 
 
-function StatusSelectBox() {
-    const [option, setOption] = useState('Todo');
+const StatusSelectBox = forwardRef((props, ref) => {
+    const board = useSelector(state => state.board);    
+    const [option, setOption] = useState(board.columns[0].columnTitle);
     const [openPopup, setOpenPopup] = useState(false);
     const popup = useRef();
 
@@ -51,6 +53,12 @@ function StatusSelectBox() {
         }
     }, [openPopup])
 
+    useImperativeHandle(ref, () => ({
+        get state(){
+            return option;
+        }
+    }))
+
 
     return(
         <section className={styles.select}>
@@ -62,24 +70,17 @@ function StatusSelectBox() {
                 <img src={icons['arrow']} className={styles.select_box_arrow}/>
             </div>
             <div className={styles.select_popup} ref={popup}>
-                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Todo'>
-                    Todo
-                </button>
-                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Doing'>
-                    Doing
-                </button>
-                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
-                    Done
-                </button>
-                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
-                    Done
-                </button>
-                <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option='Done'>
-                    Done
-                </button>
+                {board.columns.map((column, i) => {
+                        return(
+                            <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option={column.columnTitle} key={i}>
+                                {column.columnTitle}
+                            </button>
+                        )
+                    })
+                }
             </div>
         </section>
     )
-}
+})
 
 export default StatusSelectBox;

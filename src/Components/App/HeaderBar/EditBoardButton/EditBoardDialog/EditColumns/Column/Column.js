@@ -1,7 +1,7 @@
 import React, {useState, useEffect, memo} from 'react';
 import styles from './styles.module.css';
 
-function Column({defaultValue, id, updateColumn, deleteColumn}) {
+function Column({updateColumn, deleteColumn, defaultValue, id}) {
     const [close, setClose] = useState(false);
     const [text, setText] = useState(defaultValue ? defaultValue : '')
 
@@ -49,6 +49,7 @@ function Column({defaultValue, id, updateColumn, deleteColumn}) {
         emptyMessage.style.display = 'block';
     }
 
+    //this will remove the component from the array(state) in the parent component
     useEffect(() => {
         if(close){
             deleteColumn(id);

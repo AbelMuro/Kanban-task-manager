@@ -7,7 +7,7 @@ import ColumnInputs from './ColumnInputs';
 function DialogBox() {
     const [open, setOpen] = useState(false);
     const boardName = useRef();
-    const allBoardColumn = useRef();
+    const allColumns = useRef();
 
     const handleDialog = () => {
         setOpen(!open);
@@ -17,8 +17,8 @@ function DialogBox() {
         e.preventDefault();
         handleDialog();
 
-        const prevBoard = JSON.parse(localStorage.getItem('boards'));           //getting any previous boards from the local storage
-        let columns = allBoardColumn.current.state;
+        const prevBoard = JSON.parse(localStorage.getItem('boards'));                                           //getting any previous boards from the local storage
+        let columns = allColumns.current.state;
         let boardTitle = boardName.current.state;
 
         if(prevBoard){
@@ -54,7 +54,8 @@ function DialogBox() {
                 </svg>        
                 +Create New Board
             </button>
-            <Dialog open={open} PaperProps={{
+            <Dialog open={open} 
+                    PaperProps={{
                             style: {
                             backgroundColor: 'var(--dialog-bg-color)',
                             },
@@ -65,7 +66,7 @@ function DialogBox() {
                 <DialogContent className={styles.dialog_content} sx={{padding: '0px 32px 32px 32px'}}>
                     <form onSubmit={handleSubmit} className={styles.form}>
                         <BoardNameInput ref={boardName}/>
-                        <ColumnInputs ref={allBoardColumn}/>
+                        <ColumnInputs ref={allColumns}/>
                         <input type='submit' className={styles.dialog_submit} value='Create New Board'/>
                     </form>
                 </DialogContent>

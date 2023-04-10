@@ -25,7 +25,7 @@ function EditBoardDialog(){
         allBoards.forEach((currentBoard) => {                               
             if(currentBoard.boardName == board.boardName){
                 currentBoard.boardName = newBoardName.current.state;
-                currentBoard.columns = newColumns.current.columns
+                currentBoard.columns = newColumns.current.state
             }   
         })
         localStorage.setItem('boards', JSON.stringify(allBoards)); 
@@ -33,7 +33,7 @@ function EditBoardDialog(){
         const StorageEvent = new Event('UpdateStorage');        
         document.dispatchEvent(StorageEvent);     
 
-        dispatch({type: 'set board', board : {boardName: newBoardName.current.state, columns: newColumns.current.columns}});
+        dispatch({type: 'set board', board : {boardName: newBoardName.current.state, columns: newColumns.current.state}});
 
     }
 
@@ -65,7 +65,9 @@ function EditBoardDialog(){
             <button className={styles.editBoard_button} onClick={handlePopup}>
                 Edit Board
             </button>
-            <Dialog open={open}>
+            <Dialog open={open} PaperProps={{ sx: { overflowY: 'initial'}, style: {
+                            backgroundColor: 'var(--dialog-bg-color)',
+                }}}>
                 <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_title}>
                         Edit Board
