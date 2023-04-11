@@ -1,7 +1,8 @@
-import React, {useState, useEffect, memo} from 'react';
+import React, {useState, useEffect, memo, forwardRef} from 'react';
 import styles from './styles.module.css';
 
-function Column({updateColumn, deleteColumn, defaultValue, id}) {
+const Column = forwardRef(({updateColumn, deleteColumn, defaultValue, id}, ref) =>  {
+    console.log(ref.current[0]);                                    //ref.current[0] i figured it out!
     const [close, setClose] = useState(false);
     const [text, setText] = useState(defaultValue ? defaultValue : '')
 
@@ -77,6 +78,6 @@ function Column({updateColumn, deleteColumn, defaultValue, id}) {
                 <div className={styles.inputContainer_closeIcon} onClick={handleDelete}></div>
             </div>   
         )
-}
+})
 
 export default memo(Column);
