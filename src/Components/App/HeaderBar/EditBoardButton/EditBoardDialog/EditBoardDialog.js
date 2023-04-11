@@ -6,7 +6,6 @@ import EditColumns from './EditColumns';
 import styles from './styles.module.css';
 
 
-//there is an issue with this component
 function EditBoardDialog(){
     const [open, setOpen] = useState(false);
     const board = useSelector(state => state.board);
@@ -20,7 +19,6 @@ function EditBoardDialog(){
 
 //this handler will update the local storage and will also update the store
     const handleSubmit = (e) => {
-        e.preventDefault();
         handlePopup();
 
         const allBoards = JSON.parse(localStorage.getItem('boards'));
