@@ -12,7 +12,7 @@ function Column({updateColumn, deleteColumn, defaultValue, id}) {
 
     const handleChange = (e) => {
         setText(e.target.value)
-        updateColumn(id, e.target.value);
+        //updateColumn(id, e.target.value);
     }
 
     const handleClick = (e) => {

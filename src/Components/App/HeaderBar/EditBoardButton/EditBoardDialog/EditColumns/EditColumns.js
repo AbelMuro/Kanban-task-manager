@@ -4,9 +4,9 @@ import Column from './Column';
 import styles from './styles.module.css';
 import {v4 as uuid} from 'uuid';
 
-
+//i will need to re-engineer this
 const EditColumns = forwardRef(({columns}, ref) => {
-    const [allColumns, setAllColumns] = useState(columns);  //columns : [{columnTitle: '', tasks: []}, {columnTitle: '', tasks: []}]
+    const [allColumns, setAllColumns] = useState(columns); 
 
     //this function will add a new element to the array(state), which in turn will also add a new <Column/> that corresponds to that element
     const handleColumn = () => {
@@ -15,7 +15,7 @@ const EditColumns = forwardRef(({columns}, ref) => {
             return;
 
         setAllColumns((prevColumns) => {
-            return [...prevColumns, '']
+            return [...prevColumns, {columnTitle: '', tasks: []}]
         })
     }
 
@@ -57,6 +57,7 @@ const EditColumns = forwardRef(({columns}, ref) => {
             <div className={styles.allColumns_columns}>
                 {allColumns.map((column, i) => {
                     //we pass an index of the array(state) to the <Column/>, this will help us identify the component to an element in the array(state)
+                    //the plan i have is to figure out how to pass an array of refs dynamically
                     return (
                         <Column updateColumn={updateColumn} deleteColumn={deleteColumn} defaultValue={column.columnTitle} id={i} key={uuid()}/>
                     )
