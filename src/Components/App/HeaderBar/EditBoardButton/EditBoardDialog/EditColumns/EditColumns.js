@@ -1,4 +1,5 @@
 import React, {forwardRef, useImperativeHandle, memo, useState} from 'react';
+import { useSelector } from 'react-redux';
 import Column from './Column';
 import styles from './styles.module.css';
 import {v4 as uuid} from 'uuid';

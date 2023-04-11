@@ -5,6 +5,7 @@
     position: absolute;
     right: 0px;
     bottom: -110px;
+    z-index: var(--close);
     width: 192px;
     height: 94px;
     background-color: white;

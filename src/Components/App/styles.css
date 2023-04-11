@@ -35,12 +35,16 @@ fieldset{
     --dialog-title-text-color: #000112;
     --dialog-label-text-color: #828FA3;
 
+    --task-box-bg-color: white;
+    --task-title-color: #000112;
+    --add-new-column-button-bg: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
 
     --header-bg-color: white;
     --header-add-task-hover-button: #A8A4FF;
     --header-title-text-color: #000112;
 
     --closest: 50;
+    --close: 40;
     --farthest: 10;
 
     --font-jakarta: 'plus jakarta';
@@ -72,6 +76,7 @@ fieldset{
 
 body{
     background-color: var(--body-bg);
+    height: 100vh;
 }
 
 input{

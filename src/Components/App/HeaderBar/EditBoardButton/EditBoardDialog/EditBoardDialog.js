@@ -5,6 +5,8 @@ import BoardNameInput from './BoardNameInput';
 import EditColumns from './EditColumns';
 import styles from './styles.module.css';
 
+
+//there is an issue with this component
 function EditBoardDialog(){
     const [open, setOpen] = useState(false);
     const board = useSelector(state => state.board);
@@ -34,7 +36,6 @@ function EditBoardDialog(){
         document.dispatchEvent(StorageEvent);     
 
         dispatch({type: 'set board', board : {boardName: newBoardName.current.state, columns: newColumns.current.state}});
-
     }
 
     useEffect(() => {
