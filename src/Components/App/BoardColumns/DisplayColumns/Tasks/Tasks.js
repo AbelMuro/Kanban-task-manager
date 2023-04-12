@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
+import CheckBox from './CheckBox';
 import styles from './styles.module.css';
 
 //i will need to make every check box into its own component
@@ -54,12 +55,7 @@ function Tasks({task}) {
                     <div className={styles.dialogContent_subtasks}>
                         {task.subTasks.map((subtask, i) => {
                             return(
-                                <fieldset className={styles.inputContainer} key={i}>
-                                    <input type='checkbox' className={styles.inputContainer_checkBoxes} id={i} onClick={handleCheck}/>
-                                    <label className={styles.inputContainer_label} htmlFor={i}>
-                                        {subtask}
-                                    </label>
-                                </fieldset>
+                              <CheckBox subtask={subtask} key={i}/>
                             )
                         })}
                     </div>
