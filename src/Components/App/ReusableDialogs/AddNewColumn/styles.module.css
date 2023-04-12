@@ -1,25 +1,3 @@
-.addNewColumnButton{
-    cursor: pointer;
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 280px;
-    height: 83vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    color: #828FA3;
-    font-family: var(--font-jakarta);
-    font-size: var(--h1-font-size);
-    font-weight: var(--h1-font-weight);
-    background: var(--add-new-column-button-bg);    
-    border-radius: 6px;
-}
-
-.addNewColumnButton:hover{
-    color: #635FC7;
-}
-
 .dialogContent_buttons{
     display: flex;
     gap: 16px;

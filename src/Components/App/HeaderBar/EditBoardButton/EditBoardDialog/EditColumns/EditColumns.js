@@ -10,6 +10,7 @@ const EditColumns = forwardRef((props, ref) => {
         const inputContainer = e.target.parentElement;
         inputContainer.removeChild(e.target.previousElementSibling)
         inputContainer.removeChild(e.target);
+        inputContainer.style.display = 'none';
     }
 
     const handleClick = (e) => {

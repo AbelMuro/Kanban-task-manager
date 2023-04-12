@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import ColumnNameInput from './ColumnNameInput';
 import {useSelector, useDispatch} from 'react-redux';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
@@ -6,12 +6,12 @@ import styles from './styles.module.css';
 
 function AddNewColumn() {
     const selectedBoard = useSelector(state => state.board);
+    const open = useSelector(state => state.addColumn);
     const dispatch = useDispatch();
-    const [open, setOpen] = useState(false);
     const newColumn = useRef();
 
     const handleDialog = () => {
-        setOpen(!open);
+        dispatch({type: 'set add column dialog', open: false});
     }
 
     const handleSubmit = (e) => {
@@ -26,23 +26,12 @@ function AddNewColumn() {
         document.dispatchEvent(StorageEvent);
 
         dispatch({type: 'set board', board: {boardName: selectedBoard.boardName, columns: [...selectedBoard.columns, newColumn.current.state]}})
+        dispatch({type: 'set add column dialog', open: false});
     }
 
-    useEffect(() => {
-        const addColumnButton = document.querySelector('.' + styles.addNewColumnButton)
-
-        if(selectedBoard.columns.length >= 5)
-            addColumnButton.style.display = 'none';
-        else
-            addColumnButton.style.display = '';
-
-    }, [selectedBoard])
 
     return(
         <>
-            <button className={styles.addNewColumnButton} onClick={handleDialog}>
-                + New Column
-            </button>
             <Dialog open={open} 
                 PaperProps={{style: {
                             backgroundColor: 'var(--dialog-bg-color)',

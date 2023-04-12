@@ -2,31 +2,6 @@
     background-color: var(--dialog-bg-color);
 }
 
-.sidebar_addBoardButton{
-    border: none;
-    background-color: transparent;
-    color: #635FC7;
-    cursor: pointer;
-    font-family: var(--font-jakarta);
-    font-size: var(--h3-font-size);
-    font-weight: var(--h3-font-weight);
-    line-height: var(--h3-line-height);
-    width: 276px;
-    height: 48px;
-    text-align: initial;
-    padding-left: 32px;
-    display: flex;
-    align-items: center;
-}
-
-.iconContainer{
-    margin: 3px 16px 0px 0px;
-}
-
-.icon{
-    fill: #635FC7;
-}
-
 
 .dialog_title{
     font-family: var(--font-jakarta);

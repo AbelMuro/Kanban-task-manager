@@ -1,11 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import Task from './Tasks';
 import styles from './styles.module.css';
-import AddNewColumn from './AddNewColumn';
+import {useDispatch, useSelector} from 'react-redux';
 import {v4 as uuid} from 'uuid';
 
 function DisplayColumns({columns}) {
+    const dispatch = useDispatch();
+    const selectedBoard = useSelector(state => state.board);
 
+    const handleDialog = () => {
+        dispatch({type: 'set add column dialog', open: true});
+    }
+
+    useEffect(() => {
+        if(!selectedBoard) return;
+
+        const addColumnButton = document.querySelector('.' + styles.addNewColumnButton)
+
+        if(selectedBoard.columns.length >= 5)
+            addColumnButton.style.display = 'none';
+        else
+            addColumnButton.style.display = '';
+
+    }, [selectedBoard])
 
     return(
         <section className={styles.columns}>
@@ -26,7 +43,9 @@ function DisplayColumns({columns}) {
                     </div>
                 )
             })}
-            <AddNewColumn/>
+            <button className={styles.addNewColumnButton} onClick={handleDialog}>
+                + New Column
+            </button>
         </section>
     )
 }

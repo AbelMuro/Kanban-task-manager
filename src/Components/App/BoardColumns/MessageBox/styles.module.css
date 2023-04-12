@@ -2,7 +2,6 @@
     margin: auto;
     margin-top: 35vh;
     width: 493px;
-    height: 103px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,6 +14,7 @@
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
     color: #828fA3;
+    text-align: center;
 }
 
 .messageBox_addButton{
