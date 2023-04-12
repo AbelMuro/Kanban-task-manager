@@ -45,7 +45,7 @@
 .select_popup{
     position: absolute;
     width: 416px;
-    background-color: var(--dialog-select-box-bg);
+    background-color: var(--dialog-popup-bg);
     border-radius: 8px;
     padding: 16px;
     display: none;

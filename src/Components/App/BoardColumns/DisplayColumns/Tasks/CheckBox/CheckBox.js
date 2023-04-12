@@ -1,15 +1,39 @@
-import React from 'react';
+import React, {useState, useEffect, useRef, forwardRef} from 'react';
 import styles from './styles.module.css';
 
-function CheckBox({subtask}) {
+const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
+    const [checked, setChecked] = useState(subtask.completed);
+    const labelText = useRef();
+
+    const handleChange = () => {
+        handleCompleted(!checked);
+        setChecked(!checked);
+    }
+
+    useEffect(() => {
+        if(checked){
+            labelText.current.style.textDecoration = 'line-through';
+            labelText.current.style.opacity = '0.5';
+        }
+        else {
+            labelText.current.style.textDecoration = '';
+            labelText.current.style.opacity = '';
+        }
+    }, [checked])
+
     return(
         <fieldset className={styles.inputContainer}>
-            <input type='checkbox' className={styles.inputContainer_checkBoxes} onClick={handleCheck}/>
-            <label className={styles.inputContainer_label} >
-                {subtask}
+            <input 
+                type='checkbox' 
+                className={styles.inputContainer_checkBoxes} 
+                onChange={handleChange}
+                checked={checked}
+                ref={refInput => ref.current[index] = refInput}/>
+            <label className={styles.inputContainer_label} ref={labelText}>
+                {subtask.subtaskDesc}
             </label>
         </fieldset>
     )
-}
+})
 
 export default CheckBox;

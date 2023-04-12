@@ -75,9 +75,8 @@ const SubTasksInput = forwardRef((props, ref) => {
     useImperativeHandle(ref, () => ({
         get state(){
             const allInputs = document.querySelectorAll('.' + styles.inputContainer_subtask_input);
-
             return Array.from(allInputs).map((input) => {
-                return input.value
+                return {subtaskDesc: input.value, completed: false}
             })  
         }
     }))

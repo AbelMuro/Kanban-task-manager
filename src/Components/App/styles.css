@@ -27,7 +27,7 @@ fieldset{
     --sidebar-button-hover-bg: rgba(99, 95, 199, 0.1);
 
     --dialog-bg-color: white;
-    --dialog-select-box-bg: white;  
+    --dialog-popup-bg: white;  
     --dialog-input-text-color: #000112;
     --dialog-input-bg-color: white;
     --dialog-add-button: rgba(99, 95, 199, 0.1);
