@@ -10,7 +10,7 @@ function BoardColumns() {
     const sidebar = useSelector(state => state.showSidebar);
 
     const handleAddNewColumn = () => {
-
+        dispatch({type: 'set add column dialog', open: true});
     }
 
     const handleNewBoard = () => {
