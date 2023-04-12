@@ -4,28 +4,6 @@
     gap: 24px;
 }
 
-.addNewColumnButton{
-    cursor: pointer;
-    flex-shrink: 0;
-    flex-grow: 0;
-    width: 280px;
-    height: 83vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    color: #828FA3;
-    font-family: var(--font-jakarta);
-    font-size: var(--h1-font-size);
-    font-weight: var(--h1-font-weight);
-    background: var(--add-new-column-button-bg);    
-    border-radius: 6px;
-}
-
-.addNewColumnButton:hover{
-    color: #635FC7;
-}
-
 .message{
     text-align: center;
     font-family: var(--font-jakarta);
@@ -61,36 +39,4 @@
     width: 15px;
     height: 15px;
     background-color: red;
-}
-
-.column_task{
-    height: 88px;
-    background-color: var(--task-box-bg-color);
-    padding: 23px 16px 23px 16px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.0101545);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    cursor: pointer;
-}
-
-.column_task:hover > h3{
-    color:#635FC7;
-}
-
-.column_task_title{
-    font-family: var(--font-jakarta);
-    font-size: var(--h3-font-size);
-    font-weight: var(--h3-font-weight);
-    line-height: var(--h3-line-height);
-    color: var(--task-title-color);
-}
-
-.column_task_subtasks{
-    font-family: var(--font-jakarta);
-    font-size: var(--body-medium-font-size);
-    font-weight: var(--body-medium-font-weight);
-    line-height: var(--body-medium-line-height);
-    color: #828FA3;
 }

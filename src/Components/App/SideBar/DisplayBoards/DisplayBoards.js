@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef, memo} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import useLocalStorage from './useLocalStorage';
 import {v4 as uuid} from 'uuid';
 import styles from './styles.module.css';
@@ -7,8 +7,9 @@ import styles from './styles.module.css';
 
 function DisplayBoards() {
     const dispatch = useDispatch();
+    const selectedBoard = useSelector(state => state.board);
     const boards = useLocalStorage('boards');
-    const [choosenBoard, setChoosenBoard] = useState(boards.length ? boards[0].boardName : []);
+    const [choosenBoard, setChoosenBoard] = useState([]);
     const boardIconRefs = useRef([])
 
     const handleEnter = (e) => {
@@ -26,13 +27,14 @@ function DisplayBoards() {
         setChoosenBoard(boardChoosen);
     }
 
-    //this will select the very first board that is added to the board list
+//this function will automatically select a board everytime there is a change in the local storage
     useEffect(() => {
-        if(boards.length)
+        if(selectedBoard)
+            setChoosenBoard(selectedBoard.boardName);
+        else if(boards.length)
             setChoosenBoard(boards[0].boardName);
 
     }, [boards])
-
 
 
     //removing the purple background color from the previously selected board
@@ -44,7 +46,7 @@ function DisplayBoards() {
                 boardIconRefs.current[board.id].style.fill = '';
             }
         })
-    }, [choosenBoard, boards])
+    }, [choosenBoard, boards, selectedBoard])
 
     //adding a purple background color to the currently selected board
     useEffect(() => {
@@ -56,7 +58,7 @@ function DisplayBoards() {
                 boardIconRefs.current[board.id].style.fill = 'white';
             }
         })
-    }, [choosenBoard, boards])
+    }, [choosenBoard, boards, selectedBoard])
 
     //dispatching an action that contains the selected board to display to the reducer
     useEffect(() => {

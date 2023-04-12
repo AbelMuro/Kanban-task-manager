@@ -18,14 +18,14 @@ function EditBoardDialog(){
     }
 
 //this handler will update the local storage and will also update the store
-    const handleSubmit = (e) => {
+    const handleSubmit = () => {
         handlePopup();
 
         const allBoards = JSON.parse(localStorage.getItem('boards'));
         allBoards.forEach((currentBoard) => {                               
             if(currentBoard.boardName == board.boardName){
                 currentBoard.boardName = newBoardName.current.state;
-                currentBoard.columns = newColumns.current.state
+                currentBoard.columns = newColumns.current.state             //rememeber that newColumns is already an array of objects
             }   
         })
         localStorage.setItem('boards', JSON.stringify(allBoards)); 
@@ -36,6 +36,7 @@ function EditBoardDialog(){
         dispatch({type: 'set board', board : {boardName: newBoardName.current.state, columns: newColumns.current.state}});
     }
 
+    //this will close the dialog when the user clicks on the background
     useEffect(() => {
         const handleClick = (e) => {
             if(e.target.matches('.MuiDialog-container'))
@@ -49,6 +50,7 @@ function EditBoardDialog(){
         }
     }, [])
 
+//this will disable the button that triggers the dialog if there is no selected board in the store
     useEffect(() => {
         const button = document.querySelector('.' + styles.editBoard_button);
 

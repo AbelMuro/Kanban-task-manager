@@ -46,7 +46,6 @@ const EditColumns = forwardRef((props, ref) => {
         emptyMessage.style.display = 'block';
     }
 
-    //this function will add a new element to the array(state), which in turn will also add a new <Column/> that corresponds to that element
     const handleColumn = () => {
         const allColumns = document.querySelector('.' + styles.allColumns_columns);
         if(allColumns.childNodes.length >= 5)
@@ -78,12 +77,13 @@ const EditColumns = forwardRef((props, ref) => {
             allColumns.append(newInputContainer);
     }
 
+    //this hook will 'collect' all the <inputs/> of this component and get the 'value' and the 'data-tasks' attribute of each input
     useImperativeHandle(ref, () => ({
         get state() {
             const allInputs = document.querySelectorAll('.' + styles.inputContainers_input);
 
             return Array.from(allInputs).map((input) => {
-                const tasks = input.getAttribute('data-tasks');
+                const tasks = JSON.parse(input.getAttribute('data-tasks'));
                 return {columnTitle: input.value, tasks: tasks ? tasks : []}
             });
         }
@@ -95,7 +95,7 @@ const EditColumns = forwardRef((props, ref) => {
                 {`Board Columns (max: 5)`}
             </h5>
             <div className={styles.allColumns_columns}>
-                {board.columns.map((column, i) => {
+                {board.columns.map((column) => {
                     return (
                         <div className={styles.inputContainer} key={uuid()}>
                             <fieldset className={styles.inputContainer_fieldset} >
@@ -106,7 +106,7 @@ const EditColumns = forwardRef((props, ref) => {
                                     onInvalid={handleInvalid}
                                     onClick={handleClick}
                                     defaultValue={column.columnTitle}
-                                    data-tasks={column.tasks}
+                                    data-tasks={JSON.stringify(column.tasks)}
                                     required
                                     />
                                 <p className={styles.inputContainer_emptyMessage}>

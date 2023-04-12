@@ -34,6 +34,7 @@ fieldset{
     --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
     --dialog-title-text-color: #000112;
     --dialog-label-text-color: #828FA3;
+    --dialog-check-box-bg-color: #F4F7FD;
 
     --task-box-bg-color: white;
     --task-title-color: #000112;
