@@ -67,6 +67,7 @@ function Tasks({currentTask, columnTitle}) {
         dispatch({type: 'set board', board: updatedBoard});
     }
 
+//this is where i left off
     const handleEdit = () => {
         const completedTasks = allCheckboxes.current.map((checkbox) => {
             const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc;
