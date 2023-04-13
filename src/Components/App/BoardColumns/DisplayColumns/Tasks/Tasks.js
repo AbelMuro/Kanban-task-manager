@@ -34,7 +34,7 @@ function Tasks({task, columnTitle}) {
         boards.forEach((board) => {
             if(board.boardName == currentBoard.boardName){
                 board.columns.forEach((column) => {
-                    if(column.columnTitle == columnTitle)
+                    //if(column.columnTitle == columnTitle)
                 })
 
             }
