@@ -33,9 +33,9 @@ function DisplayColumns({columns}) {
                             <div className={styles.dot}></div>
                             {`${column.columnTitle} (${column.tasks.length})`}
                         </div>
-                        {column.tasks.length ? column.tasks.map((task) => {
+                        {column.tasks.length ? column.tasks.map((task, i) => {
                             return(
-                                <Task task={task} key={uuid()}/>
+                                <Task task={task} columnTitle={column.columnTitle} key={uuid()}/>
                             ) 
                         }) : <div className={styles.message}>
                                 No tasks in this column

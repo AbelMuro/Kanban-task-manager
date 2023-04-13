@@ -31,12 +31,19 @@
     color: #828FA3;
 }
 
+.dialogTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
 .dialogTitle_title{
     font-family: var(--font-jakarta);
     font-size: var(--h2-font-size);
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
     color: var(--dialog-title-text-color);
+    width: 380px;
 }
 
 .dialogContent{

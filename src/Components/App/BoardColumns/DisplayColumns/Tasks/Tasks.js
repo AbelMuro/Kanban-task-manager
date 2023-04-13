@@ -1,10 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
+import {useSelector} from 'react-redux';
+import EditOrDeleteTask from './EditOrDeleteTask';
 import CheckBox from './CheckBox';
 import SelectBox from './SelectBox';
 import styles from './styles.module.css';
 
-function Tasks({task}) {
+function Tasks({task, columnTitle}) {
+    const currentBoard = useSelector(state => state.board);
     const [open, setOpen] = useState(false);
     const [completed, setCompleted] = useState(0);
     const allCheckboxes = useRef([])
@@ -24,6 +27,19 @@ function Tasks({task}) {
                 return prevState - 1;
             })
         }
+    }
+
+    const handleDelete = () => {
+        const boards = JSON.parse(localStorage.getItem('boards'));
+        boards.forEach((board) => {
+            if(board.boardName == currentBoard.boardName){
+                board.columns.forEach((column) => {
+                    if(column.columnTitle == columnTitle)
+                })
+
+            }
+
+        })
     }
 
     useEffect(() => {
@@ -48,7 +64,15 @@ function Tasks({task}) {
         })
 
         setCompleted(completedTasks);
+
     }, [])
+
+    //resets the state
+    useEffect(() => {
+        if(!open)
+            setCompleted(0);
+        
+    }, [open])
 
     return(      
         <>
@@ -64,9 +88,12 @@ function Tasks({task}) {
                             backgroundColor: 'var(--dialog-bg-color)',
                             }}}>
                 <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
-                    <span className={styles.dialogTitle_title}>
-                        {task.taskTitle}                        
-                    </span>
+                    <div className={styles.dialogTitle}>
+                        <h2 className={styles.dialogTitle_title}>
+                            {task.taskTitle}                        
+                        </h2>     
+                        <EditOrDeleteTask handleDelete={handleDelete}/>                   
+                    </div>
                 </DialogTitle>
                 <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 32px 32px', overflow: 'initial'}}>
                     <p className={styles.dialogContent_desc}>
