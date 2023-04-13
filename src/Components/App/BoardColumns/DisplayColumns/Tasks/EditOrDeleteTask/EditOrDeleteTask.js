@@ -15,6 +15,7 @@ function EditOrDelete({handleDelete}) {
             popup.current.style.display = 'flex';
         else
             popup.current.style.display = '';
+            
     }, [open])
 
     useEffect(() => {

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import EditOrDeleteTask from './EditOrDeleteTask';
 import CheckBox from './CheckBox';
 import SelectBox from './SelectBox';
@@ -8,9 +8,11 @@ import styles from './styles.module.css';
 
 function Tasks({currentTask, columnTitle}) {
     const currentBoard = useSelector(state => state.board);
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [completed, setCompleted] = useState(0);
-    const allCheckboxes = useRef([])
+    const allCheckboxes = useRef([]);
+    const column = useRef();
 
     const handleTask = () => {
         setOpen(!open)
@@ -29,26 +31,76 @@ function Tasks({currentTask, columnTitle}) {
         }
     }
 
+    //updating the local storage and dispatching an action with the updated board
     const handleDelete = () => {
+        let updatedBoard = null;
+
         const boards = JSON.parse(localStorage.getItem('boards'));
         boards.every((board) => {
             if(board.boardName == currentBoard.boardName){
+                updatedBoard = board;
                 board.columns.every((column) => {
                     if(column.columnTitle == columnTitle){
-                        column.every((task) => {
+                        column.tasks.every((task, i, allTasks) => {
                             if(task.taskTitle == currentTask.taskTitle){
-                                //this is where i left off
+                                allTasks.splice(i, 1);
+                                return false;
                             }
-
+                            else
+                                return true;
                         }) 
-                        return false                       
+                        return false;                   
                     }
-
+                    else
+                        return true;
                 })
                 return false;
             }
-
+            else
+                return true;
         })
+        localStorage.setItem('boards', JSON.stringify(boards));
+
+        const StorageEvent = new Event('UpdateStorage');
+        document.dispatchEvent(StorageEvent);
+
+        dispatch({type: 'set board', board: updatedBoard});
+    }
+
+    const handleEdit = () => {
+        const completedTasks = allCheckboxes.current.map((checkbox) => {
+            const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc;
+
+            return {subtaskDesc: subtaskDesc, completed: checkbox.checked}
+        })
+
+        let updatedBoard = null;
+
+        const boards = JSON.parse(localStorage.getItem('boards'));
+        boards.every((board) => {
+            if(board.boardName == currentBoard.boardName){
+                updatedBoard = board;
+                board.columns.every((column) => {
+                    if(column.columnTitle == columnTitle){
+                        column.tasks.every((task, i, allTasks) => {
+                            if(task.taskTitle == currentTask.taskTitle){
+                               
+                                return false;
+                            }
+                            else
+                                return true;
+                        }) 
+                        return false;                   
+                    }
+                    else
+                        return true;
+                })
+                return false;
+            }
+            else
+                return true;
+        })
+        //localStorage.setItem('boards', JSON.stringify(boards));
     }
 
     useEffect(() => {
@@ -123,7 +175,7 @@ function Tasks({currentTask, columnTitle}) {
                             )
                         })}
                     </div>
-                    <SelectBox/>
+                    <SelectBox ref={column}/>
                 </DialogContent>
             </Dialog>      
         </>                          

@@ -1,9 +1,9 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
 import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
 
-function SelectBox() {
+const SelectBox = forwardRef((props, ref) => {
     const selectedBoard = useSelector(state => state.board);
     const [option, setOption] = useState(selectedBoard.columns[0].columnTitle);
     const [openPopup, setOpenPopup] = useState(false);
@@ -34,6 +34,13 @@ function SelectBox() {
     }, [openPopup])
 
 
+    useImperativeHandle(ref, () => ({
+        get state() {
+            return option;
+        }
+    }))  
+
+
     return(
         <section className={styles.selectBox}>
             <h4 className={styles.selectBox_label}>
@@ -54,6 +61,6 @@ function SelectBox() {
             </div>
         </section>
     )
-}
+})
 
 export default SelectBox;

@@ -28,7 +28,9 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
                 className={styles.inputContainer_checkBoxes} 
                 onChange={handleChange}
                 checked={checked}
-                ref={refInput => ref.current[index] = refInput}/>
+                ref={refInput => ref.current[index] = refInput}
+                data-task={JSON.stringify(subtask)}
+                />
             <label className={styles.inputContainer_label} ref={labelText}>
                 {subtask.subtaskDesc}
             </label>

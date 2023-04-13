@@ -26,7 +26,7 @@ function AddNewTaskDialog() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        //updating the local state with the new tasks
+        //updating the store's state with the new tasks
         const updatedColumns = currentBoard.columns.map((column) => {      
             if(column.columnTitle == subtaskColumn.current.state){
                 return {columnTitle: column.columnTitle, 
