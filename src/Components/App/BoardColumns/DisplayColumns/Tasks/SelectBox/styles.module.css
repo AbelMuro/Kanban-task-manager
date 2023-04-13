@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    position: relative;
 }
 
 .selectBox_label{
@@ -33,8 +34,28 @@
     border: 1px solid #635FC7;
 }
 
-/* this is where i left off*/
 .selectBox_popup{
-    background-color: var(--dialog-popup-color);
+    position: absolute;
+    z-index: var(--closest);
+    top: 70px;
+    width: 416px;
+    background-color: var(--dialog-popup-bg);
+    box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.selectBox_option{
     font-family: var(--font-jakarta);
+    font-size: var(--body-large-font-size);
+    font-weight: var(--body-large-font-weight);
+    line-height: var(--body-large-line-height);
+    color:  #828FA3;
+    cursor: pointer;
+}
+
+.selectBox_option:hover{
+    color:#635FC7
 }

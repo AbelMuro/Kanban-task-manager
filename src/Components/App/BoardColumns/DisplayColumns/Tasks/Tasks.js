@@ -60,13 +60,15 @@ function Tasks({task}) {
                     {`0 of ${task.subTasks.length} subtasks`}
                 </p>
             </div>  
-            <Dialog open={open}>
+            <Dialog open={open} PaperProps={{ sx: { overflow: 'initial'}, style: {
+                            backgroundColor: 'var(--dialog-bg-color)',
+                            }}}>
                 <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_title}>
                         {task.taskTitle}                        
                     </span>
                 </DialogTitle>
-                <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 32px 32px'}}>
+                <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 32px 32px', overflow: 'initial'}}>
                     <p className={styles.dialogContent_desc}>
                         {task.description}
                     </p>

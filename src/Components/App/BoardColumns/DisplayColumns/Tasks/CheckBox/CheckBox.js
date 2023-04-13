@@ -22,7 +22,7 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
     }, [checked])
 
     return(
-        <fieldset className={styles.inputContainer}>
+        <fieldset className={styles.inputContainer} onClick={handleChange}>
             <input 
                 type='checkbox' 
                 className={styles.inputContainer_checkBoxes} 

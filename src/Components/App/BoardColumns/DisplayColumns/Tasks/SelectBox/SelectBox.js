@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
@@ -6,20 +6,47 @@ import icons from './icons';
 function SelectBox() {
     const selectedBoard = useSelector(state => state.board);
     const [option, setOption] = useState(selectedBoard.columns[0].columnTitle);
+    const [openPopup, setOpenPopup] = useState(false);
+    const popup = useRef();
+    const arrowRef = useRef();
+
+    const handlePopup = () => {
+        setOpenPopup(!openPopup);
+    }
+
+    const handleOption = (e) => {
+        const optionChoosen = e.target.getAttribute('data-option');
+        setOption(optionChoosen);
+        setOpenPopup(false);
+    }
+
+    useEffect(() => {
+        if(openPopup){
+            popup.current.style.display = 'flex';
+            arrowRef.current.style.transform = 'rotate(180deg)';
+        }
+            
+        else{
+            popup.current.style.display = '';
+            arrowRef.current.style.transform = '';
+        }
+            
+    }, [openPopup])
+
 
     return(
         <section className={styles.selectBox}>
             <h4 className={styles.selectBox_label}>
                 Current Status
             </h4>
-            <div className={styles.selectBox_select}>
+            <div className={styles.selectBox_select} onClick={handlePopup}>
                 {option}
-                <img className={styles.arrowDown} src={icons['arrowDown']}/>
+                <img className={styles.arrowDown} src={icons['arrowDown']} ref={arrowRef}/>
             </div>
-            <div className={styles.selectBox_popup}>
+            <div className={styles.selectBox_popup} ref={popup}>
                 {selectedBoard.columns.map((column, i) => {
                     return(
-                        <div className={styles.selectBox_option} key={i}>
+                        <div className={styles.selectBox_option} key={i} onClick={handleOption} data-option={column.columnTitle}>
                             {column.columnTitle}
                         </div>
                     )

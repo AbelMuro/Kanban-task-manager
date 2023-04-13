@@ -35,6 +35,7 @@ fieldset{
     --dialog-title-text-color: #000112;
     --dialog-label-text-color: #828FA3;
     --dialog-check-box-bg-color: #F4F7FD;
+    --dialog-check-box-square-bg: white;        /* i need to figure out how to change the background on an unchecked box*/
 
     --task-box-bg-color: white;
     --task-title-color: #000112;
