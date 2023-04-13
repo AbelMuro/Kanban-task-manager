@@ -69,14 +69,13 @@ function Tasks({currentTask, columnTitle}) {
 
 //this is where i left off
     const handleEdit = () => {
-        const completedTasks = allCheckboxes.current.map((checkbox) => {
-            const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc;
 
+        const completedTasks = allCheckboxes.current.map((checkbox) => {
+            const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc; //collecting 'checkbox' and the 'data-task' atttributes from all the checkbox inputs
             return {subtaskDesc: subtaskDesc, completed: checkbox.checked}
         })
 
         let updatedBoard = null;
-
         const boards = JSON.parse(localStorage.getItem('boards'));
         boards.every((board) => {
             if(board.boardName == currentBoard.boardName){
