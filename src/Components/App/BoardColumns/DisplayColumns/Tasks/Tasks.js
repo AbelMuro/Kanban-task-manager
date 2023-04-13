@@ -84,7 +84,7 @@ function Tasks({currentTask, columnTitle}) {
                     if(column.columnTitle == columnTitle){
                         column.tasks.every((task, i, allTasks) => {
                             if(task.taskTitle == currentTask.taskTitle){
-                               
+                                //need to do something here with completedTask variable
                                 return false;
                             }
                             else
