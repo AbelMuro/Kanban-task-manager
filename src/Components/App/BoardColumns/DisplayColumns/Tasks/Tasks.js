@@ -6,7 +6,7 @@ import CheckBox from './CheckBox';
 import SelectBox from './SelectBox';
 import styles from './styles.module.css';
 
-function Tasks({task, columnTitle}) {
+function Tasks({currentTask, columnTitle}) {
     const currentBoard = useSelector(state => state.board);
     const [open, setOpen] = useState(false);
     const [completed, setCompleted] = useState(0);
@@ -31,12 +31,21 @@ function Tasks({task, columnTitle}) {
 
     const handleDelete = () => {
         const boards = JSON.parse(localStorage.getItem('boards'));
-        boards.forEach((board) => {
+        boards.every((board) => {
             if(board.boardName == currentBoard.boardName){
-                board.columns.forEach((column) => {
-                    //if(column.columnTitle == columnTitle)
-                })
+                board.columns.every((column) => {
+                    if(column.columnTitle == columnTitle){
+                        column.every((task) => {
+                            if(task.taskTitle == currentTask.taskTitle){
+                                //this is where i left off
+                            }
 
+                        }) 
+                        return false                       
+                    }
+
+                })
+                return false;
             }
 
         })
@@ -58,7 +67,7 @@ function Tasks({task, columnTitle}) {
     useEffect(() => {
         let completedTasks = 0;
 
-        task.subTasks.forEach((subtask) => {
+        currentTask.subTasks.forEach((subtask) => {
             if(subtask.completed)
                 completedTasks++;
         })
@@ -78,10 +87,10 @@ function Tasks({task, columnTitle}) {
         <>
             <div className={styles.column_task} onClick={handleTask}>
                 <h3 className={styles.column_task_title}>
-                    {task.taskTitle}
+                    {currentTask.taskTitle}
                 </h3>
                 <p className={styles.column_task_subtasks}>
-                    {`0 of ${task.subTasks.length} subtasks`}
+                    {`0 of ${currentTask.subTasks.length} subtasks`}
                 </p>
             </div>  
             <Dialog open={open} PaperProps={{ sx: { overflow: 'initial'}, style: {
@@ -90,20 +99,20 @@ function Tasks({task, columnTitle}) {
                 <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
                     <div className={styles.dialogTitle}>
                         <h2 className={styles.dialogTitle_title}>
-                            {task.taskTitle}                        
+                            {currentTask.taskTitle}                        
                         </h2>     
                         <EditOrDeleteTask handleDelete={handleDelete}/>                   
                     </div>
                 </DialogTitle>
                 <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 32px 32px', overflow: 'initial'}}>
                     <p className={styles.dialogContent_desc}>
-                        {task.description}
+                        {currentTask.description}
                     </p>
                     <h5 className={styles.dialogContent_subtasksCompleted}>
-                        {`Subtasks (${completed} of ${task.subTasks.length})`}
+                        {`Subtasks (${completed} of ${currentTask.subTasks.length})`}
                     </h5>
                     <div className={styles.dialogContent_subtasks}>
-                        {task.subTasks.map((subtask, i) => {
+                        {currentTask.subTasks.map((subtask, i) => {
                             return(
                               <CheckBox 
                                 subtask={subtask} 
