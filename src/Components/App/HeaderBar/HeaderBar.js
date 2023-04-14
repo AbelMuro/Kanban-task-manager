@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import EditBoardButton from './EditBoardButton';
 import AddNewTaskDialog from './AddNewTaskDialog';
 import MobileMenu from './MobileMenu';
@@ -8,26 +8,8 @@ import styles from './styles.module.css';
 import icons from './icons'
 
 function HeaderBar() {
-    const showSidebar = useSelector(state => state.showSidebar);
     const theme = useSelector(state => state.switchTheme);
-    const tablet = useMediaQuery('(max-width: 1000px)');
     const mobile = useMediaQuery('(max-width: 780px)');
-
-    //this will move the platform launch title to the right when the sidebar is visible
-    useEffect(() => {
-        const platformLaunchTitle = document.querySelector('.' + styles.header_kanban_title);
-
-        if(showSidebar){
-            if(tablet)
-                platformLaunchTitle.style.left = '40px';
-            else
-                platformLaunchTitle.style.left = '80px';
-        }
-        else
-            platformLaunchTitle.style.left = '' 
-
-    }, [showSidebar, tablet])
-
 
     return(
         <header className={styles.header}>
@@ -36,10 +18,7 @@ function HeaderBar() {
                             theme ? icons['logoDarkTheme'] : icons['logoLightTheme']} 
                      className={styles.header_kanban_logo} 
                      alt={'kanban logo'}/>
-                    {mobile ? <MobileMenu/> : 
-                        <h1 className={styles.header_kanban_title}>
-                            Platform Launch
-                        </h1>}              
+                <MobileMenu isMobile={mobile}/> 
             </section>
             <section className={styles.header_addNewTask}>   
                 <AddNewTaskDialog/>

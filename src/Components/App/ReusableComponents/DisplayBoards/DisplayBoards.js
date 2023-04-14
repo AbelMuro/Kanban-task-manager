@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef, memo} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from '../useLocalStorage';
 import {v4 as uuid} from 'uuid';
 import styles from './styles.module.css';
 
@@ -39,6 +39,7 @@ function DisplayBoards() {
 
     //removing the purple background color from the previously selected board
     useEffect(() => {
+        console.log(choosenBoard);
         const allBoards = document.querySelectorAll('.' + styles.sidebar_board);
         allBoards.forEach((board) => {
             if(board.classList.contains(styles.sidebar_board_active)){
@@ -50,6 +51,7 @@ function DisplayBoards() {
 
     //adding a purple background color to the currently selected board
     useEffect(() => {
+        console.log(choosenBoard);
         const allBoards = document.querySelectorAll('.' + styles.sidebar_board);
         allBoards.forEach((board) => {
             const boardName = board.getAttribute('data-board');

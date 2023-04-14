@@ -8,7 +8,6 @@ export default function removeTaskFromColumn(boards, currentBoard, currentColumn
                 if(column.columnTitle == currentColumn){
                     column.tasks.every((task, i, allTasks) => {
                         if(task.taskTitle == currentTask.taskTitle){
-                            console.log('im here');
                             allTasks.splice(i, 1);
                             return false;
                         }

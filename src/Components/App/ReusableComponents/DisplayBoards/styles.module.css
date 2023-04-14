@@ -51,12 +51,13 @@
 
 
 @media(max-width: 1000px){
-    .sidebar_title{
-        margin-left: 16px;
-    }
 
     .sidebar_board{
         padding-left: 16px;
         width: 232px;
+    }
+
+    .sidebar_title{
+        margin-left: 16px;
     }
 }

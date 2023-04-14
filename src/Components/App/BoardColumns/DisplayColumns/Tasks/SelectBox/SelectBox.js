@@ -3,9 +3,9 @@ import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
 
-const SelectBox = forwardRef((props, ref) => {
+const SelectBox = forwardRef(({currentColumn}, ref) => {
     const selectedBoard = useSelector(state => state.board);
-    const [option, setOption] = useState(selectedBoard.columns[0].columnTitle);
+    const [option, setOption] = useState(currentColumn);
     const [openPopup, setOpenPopup] = useState(false);
     const popup = useRef();
     const arrowRef = useRef();

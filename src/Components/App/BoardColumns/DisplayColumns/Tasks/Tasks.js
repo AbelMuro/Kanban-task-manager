@@ -131,7 +131,7 @@ function Tasks({currentTask, currentColumn}) {
                             )
                         })}
                     </div>
-                    <SelectBox ref={column}/>
+                    <SelectBox currentColumn={currentColumn} ref={column}/>
                 </DialogContent>
             </Dialog>      
         </>                          

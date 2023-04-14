@@ -24,15 +24,6 @@
     border-right: 1px solid var(--sidebar-border-color); 
 }
 
-.header_kanban_title{
-    font-family: var(--font-jakarta);
-    font-size: var(--h1-font-size);
-    font-weight: var(--h1-font-weight);
-    line-height: var(--h1-line-height);
-    color: var(--header-title-text-color);
-    position: relative;
-    left: 0px;
-}
 
 .header_addNewTask{
     width: 193px;
