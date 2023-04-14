@@ -20,6 +20,18 @@ export function BoardReducer(state = null, action){
     }
 }
 
+export function SwitchThemeReducer (state = false, action) {
+    switch(action.type){
+        case 'set theme':
+            return action.theme;
+        case 'get theme':
+            return state;
+        default: 
+            return state;
+    }
+
+}
+
 export function OpenAddBoardDialog(state = false, action) {
     switch(action.type){
         case 'set add board dialog':

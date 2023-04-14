@@ -66,10 +66,10 @@
     width: 200px;
     border: none;
     border-radius: 20px;
-    background-color: rgba(99, 95, 199, 0.1);
+    background-color: var(--dialog-add-button);
     color: #635FC7;
 }
 
 .dialogActions_buttons_cancel:hover{
-    background-color: rgba(99, 95, 199, 0.25);
+    background-color: var(--dialog-hover-add-button);
 }

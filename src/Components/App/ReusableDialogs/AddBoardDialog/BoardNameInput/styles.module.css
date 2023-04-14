@@ -26,11 +26,11 @@
     font-size: var(--body-large-font-size);
     font-weight: var(--body-large-font-weight);
     line-height: var(--body-large-line-height);
-    color: #000112;
+    color: var(--dialog-input-text-color);
 }
 
 .input::placeholder{
-    color: rgba(0, 1, 18, 0.25);
+    color: var(--dialog-placeholder-text-color);
 }
 
 .input:hover{

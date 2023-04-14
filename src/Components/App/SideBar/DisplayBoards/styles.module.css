@@ -1,3 +1,13 @@
+.sidebar_title{
+    font-family: var(--font-jakarta);
+    font-size: var(--h4-font-size);
+    font-weight: var(--h4-font-weight);
+    line-height: var(--h4-line-height);
+    letter-spacing: 2.4px;
+    color: #828FA3;
+    margin: 0px 0px 19px 32px;
+}
+
 .sidebar_board{
     width: 276px;
     height: 48px;

@@ -1,16 +1,19 @@
 import React, {useState, useEffect, useRef} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
 import {useSelector, useDispatch} from 'react-redux';
+import traverseThroughBoard from './TraverseThroughBoard';
+import removeTaskFromColumn from './RemoveTaskFromColumn';
 import EditOrDeleteTask from './EditOrDeleteTask';
 import CheckBox from './CheckBox';
 import SelectBox from './SelectBox';
 import styles from './styles.module.css';
 
-function Tasks({currentTask, columnTitle}) {
+function Tasks({currentTask, currentColumn}) {
     const currentBoard = useSelector(state => state.board);
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const [completed, setCompleted] = useState(0);
+    const completedTasks = useRef(0);
     const allCheckboxes = useRef([]);
     const column = useRef();
 
@@ -33,31 +36,9 @@ function Tasks({currentTask, columnTitle}) {
 
     //updating the local storage and dispatching an action with the updated board
     const handleDelete = () => {
-        let updatedBoard = null;
-
         const boards = JSON.parse(localStorage.getItem('boards'));
-        boards.every((board) => {
-            if(board.boardName == currentBoard.boardName){
-                updatedBoard = board;
-                board.columns.every((column) => {
-                    if(column.columnTitle == columnTitle){
-                        column.tasks.every((task, i, allTasks) => {
-                            if(task.taskTitle == currentTask.taskTitle){
-                                allTasks.splice(i, 1);
-                                return false;
-                            }
-                            else
-                                return true;
-                        }) 
-                        return false;                   
-                    }
-                    else
-                        return true;
-                })
-                return false;
-            }
-            else
-                return true;
+        const updatedBoard = traverseThroughBoard(boards, currentBoard, currentColumn, currentTask, (task, i, allTasks) => {
+            allTasks.splice(i, 1);
         })
         localStorage.setItem('boards', JSON.stringify(boards));
 
@@ -65,42 +46,30 @@ function Tasks({currentTask, columnTitle}) {
         document.dispatchEvent(StorageEvent);
 
         dispatch({type: 'set board', board: updatedBoard});
+        setOpen(false);
     }
 
-//this is where i left off
-    const handleEdit = () => {
 
-        const completedTasks = allCheckboxes.current.map((checkbox) => {
-            const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc; //collecting 'checkbox' and the 'data-task' atttributes from all the checkbox inputs
+    const handleEdit = () => {
+        //collecting data from the input check boxes
+        const completedSubTasks = allCheckboxes.current.map((checkbox) => {
+            const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc; 
             return {subtaskDesc: subtaskDesc, completed: checkbox.checked}
         })
 
-        let updatedBoard = null;
+
+
+
+        
+//this is where i left off, now i need to pass the new coliumn to traverseThroughBoard()
         const boards = JSON.parse(localStorage.getItem('boards'));
-        boards.every((board) => {
-            if(board.boardName == currentBoard.boardName){
-                updatedBoard = board;
-                board.columns.every((column) => {
-                    if(column.columnTitle == columnTitle){
-                        column.tasks.every((task, i, allTasks) => {
-                            if(task.taskTitle == currentTask.taskTitle){
-                                //need to do something here with completedTask variable
-                                return false;
-                            }
-                            else
-                                return true;
-                        }) 
-                        return false;                   
-                    }
-                    else
-                        return true;
-                })
-                return false;
-            }
-            else
-                return true;
+        removeTaskFromColumn(boards, currentBoard, currentColumn, currentTask);
+        const updatedBoard = traverseThroughBoard(boards, currentBoard, currentColumn, currentTask, (task) => {
+            task.subTasks = completedSubTasks;
         })
-        //localStorage.setItem('boards', JSON.stringify(boards));
+        localStorage.setItem('boards', JSON.stringify(boards));
+        dispatch({type: 'set board', board: updatedBoard});
+        setOpen(false);
     }
 
     useEffect(() => {
@@ -117,23 +86,15 @@ function Tasks({currentTask, columnTitle}) {
     })
 
     useEffect(() => {
-        let completedTasks = 0;
+        completedTasks.current = 0;
 
         currentTask.subTasks.forEach((subtask) => {
             if(subtask.completed)
-                completedTasks++;
+                completedTasks.current++;
         })
 
-        setCompleted(completedTasks);
-
+        setCompleted(completedTasks.current);
     }, [])
-
-    //resets the state
-    useEffect(() => {
-        if(!open)
-            setCompleted(0);
-        
-    }, [open])
 
     return(      
         <>
@@ -142,7 +103,7 @@ function Tasks({currentTask, columnTitle}) {
                     {currentTask.taskTitle}
                 </h3>
                 <p className={styles.column_task_subtasks}>
-                    {`0 of ${currentTask.subTasks.length} subtasks`}
+                    {`${completedTasks.current} of ${currentTask.subTasks.length} subtasks`}
                 </p>
             </div>  
             <Dialog open={open} PaperProps={{ sx: { overflow: 'initial'}, style: {
@@ -153,7 +114,7 @@ function Tasks({currentTask, columnTitle}) {
                         <h2 className={styles.dialogTitle_title}>
                             {currentTask.taskTitle}                        
                         </h2>     
-                        <EditOrDeleteTask handleDelete={handleDelete}/>                   
+                        <EditOrDeleteTask handleDelete={handleDelete} handleEdit={handleEdit}/>                   
                     </div>
                 </DialogTitle>
                 <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 32px 32px', overflow: 'initial'}}>

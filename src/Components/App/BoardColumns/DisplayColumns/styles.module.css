@@ -38,8 +38,27 @@
     border-radius: 100%;
     width: 15px;
     height: 15px;
-    background-color: red;
 }
+
+
+div.column:nth-child(1) .column_title .dot,
+div.column:nth-child(4) .column_title .dot{
+    background-color: #49C4E5;
+}
+
+
+div.column:nth-child(2) .column_title .dot,
+div.column:nth-child(5) .column_title .dot{
+    background-color: #8471F2;
+}
+
+div.column:nth-child(3) .column_title .dot{
+    background-color: #67E2AE;
+}
+
+
+
+
 
 .addNewColumnButton{
     cursor: pointer;

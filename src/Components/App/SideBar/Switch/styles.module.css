@@ -1,7 +1,7 @@
 .switchBox{
     width: 251px;
     height: 48px;
-    background-color: #F4F7FD;
+    background-color: var(--sidebar-switch-box);
     border-radius: 6px;
     padding: 0px 64px 0px 64px;
     display: flex;

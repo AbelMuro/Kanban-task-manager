@@ -92,7 +92,8 @@ const ColumnInputs = forwardRef((props, ref) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur} 
                                 onInvalid={handleInvalid}
-                                required/>
+                                required
+                                placeholder='e.g Todo'/>
                             <div className={styles.emptyMessage}>
                                 Can't be empty
                             </div>                            
@@ -107,6 +108,7 @@ const ColumnInputs = forwardRef((props, ref) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur} 
                                 onInvalid={handleInvalid}
+                                placeholder='e.g Doing'
                                 required/>
                             <div className={styles.emptyMessage}>
                                 Can't be empty

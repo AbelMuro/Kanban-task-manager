@@ -7,6 +7,7 @@ import icons from './icons'
 
 function HeaderBar() {
     const showSidebar = useSelector(state => state.showSidebar);
+    const theme = useSelector(state => state.switchTheme)
 
     //this will move the platform launch title to the right when the sidebar is visible
     useEffect(() => {
@@ -23,7 +24,7 @@ function HeaderBar() {
     return(
         <header className={styles.header}>
             <section className={styles.header_kanban}>
-                <img src={icons['logoLightTheme']} className={styles.header_kanban_logo} alt={'kanban logo'}/>
+                <img src={theme ? icons['logoDarkTheme'] : icons['logoLightTheme']} className={styles.header_kanban_logo} alt={'kanban logo'}/>
                 <h1 className={styles.header_kanban_title}>
                     Platform Launch
                 </h1>                

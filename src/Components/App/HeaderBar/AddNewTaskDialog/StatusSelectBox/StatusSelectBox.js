@@ -8,6 +8,7 @@ const StatusSelectBox = forwardRef((props, ref) => {
     const board = useSelector(state => state.board);    
     const [option, setOption] = useState(board.columns[0].columnTitle);
     const [openPopup, setOpenPopup] = useState(false);
+    const arrowRef = useRef();
     const popup = useRef();
 
     const handleClick = () => {
@@ -19,6 +20,13 @@ const StatusSelectBox = forwardRef((props, ref) => {
         setOption(choosenOption);
     }
 
+    useEffect(() => {
+        if(openPopup)
+            arrowRef.current.style.transform = 'rotate(180deg)';
+        else    
+            arrowRef.current.style.transform = '';
+    }, [openPopup])
+
 //this will make the popup appear when the user clicks on the select box
     useEffect(() => {
         if(openPopup)
@@ -27,6 +35,7 @@ const StatusSelectBox = forwardRef((props, ref) => {
             popup.current.style.display = '';
     }, [openPopup])
 
+//this will scroll down automatically when the popup appears
     useEffect(() => {
         const dialogContent = document.querySelector('.MuiDialogContent-root');
 
@@ -67,7 +76,7 @@ const StatusSelectBox = forwardRef((props, ref) => {
             </h5>
             <div className={styles.select_box} onClick={handleClick}>
                 {option}
-                <img src={icons['arrow']} className={styles.select_box_arrow}/>
+                <img src={icons['arrow']} className={styles.select_box_arrow} ref={arrowRef}/>
             </div>
             <div className={styles.select_popup} ref={popup}>
                 {board.columns.map((column, i) => {

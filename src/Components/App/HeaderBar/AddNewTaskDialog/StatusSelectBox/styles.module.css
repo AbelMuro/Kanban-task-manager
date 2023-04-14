@@ -23,7 +23,7 @@
     align-items: center;
     padding: 0px 16px;
     cursor: pointer;
-    background-color: white;
+    background-color: var(--dialog-input-bg-color);
     font-family: var(--font-jakarta);
     font-size: var(--body-large-font-size);
     font-weight: var(--body-large-font-weight);

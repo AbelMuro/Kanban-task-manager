@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef, forwardRef} from 'react';
+import React, {useState, useEffect, useRef, forwardRef, memo} from 'react';
 import styles from './styles.module.css';
 
 const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
@@ -22,7 +22,7 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
     }, [checked])
 
     return(
-        <fieldset className={styles.inputContainer} onClick={handleChange}>
+        <fieldset className={styles.inputContainer}>
             <input 
                 type='checkbox' 
                 className={styles.inputContainer_checkBoxes} 
@@ -38,4 +38,4 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
     )
 })
 
-export default CheckBox;
+export default memo(CheckBox);

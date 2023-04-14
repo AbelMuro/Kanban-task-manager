@@ -6,7 +6,7 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #E4EBFA;
+    border-bottom: 1px solid var(--header-border-color);
 }
 
 .header_kanban{
@@ -21,7 +21,7 @@
     height: 96px;
     object-fit: contain;
     padding-right: 32.47px;
-    border-right: 1px solid #E4EBFA; 
+    border-right: 1px solid var(--sidebar-border-color); 
 }
 
 .header_kanban_title{

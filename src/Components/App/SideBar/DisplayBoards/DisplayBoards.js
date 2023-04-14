@@ -75,6 +75,9 @@ function DisplayBoards() {
 
     return(
         <>
+            <h4 className={styles.sidebar_title}>
+                {`ALL BOARDS (${boards.length})`}
+            </h4>
             {boards.map((board, i) => {
                 return(
                     <div 

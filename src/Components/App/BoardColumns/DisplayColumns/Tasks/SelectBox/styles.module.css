@@ -40,7 +40,7 @@
     top: 70px;
     width: 416px;
     background-color: var(--dialog-popup-bg);
-    box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
+    box-shadow: var(--dialog-popup-box-shadow);
     border-radius: 8px;
     display: none;
     flex-direction: column;

@@ -10,7 +10,7 @@
     top: 0px;
     left: 0px;
     z-index: var(--closest);
-    border-right: 1px solid #E4EBFA;
+    border-right: 1px solid var(--sidebar-border-color);
 }
 
 .sidebar_top{
@@ -29,15 +29,6 @@
 .sidebar_boards{
     display: flex;
     flex-direction: column;
-}
-
-.sidebar_title{
-    font-family: var(--font-jakarta);
-    font-size: var(--h4-font-size);
-    font-weight: var(--h4-font-weight);
-    line-height: var(--h4-line-height);
-    color: #828FA3;
-    margin: 0px 0px 19px 32px;
 }
 
 .sidebar_bottom{

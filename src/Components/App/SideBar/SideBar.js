@@ -3,12 +3,13 @@ import Switch from './Switch';
 import styles from './styles.module.css';
 import HideShowIcon from './HideShowIcon';
 import DisplayBoards from './DisplayBoards';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import icons from './icons';
 
 function SideBar() {
     const dispatch = useDispatch();
     const [showSidebar, setShowSidebar] = useState(true);
+    const theme = useSelector(state => state.switchTheme);
     const hideShowIconRef = useRef();
     const sidebar = useRef();
 
@@ -41,15 +42,13 @@ function SideBar() {
         dispatch({type: 'set sidebar', show: showSidebar});
     }, [showSidebar])
 
+
     return(
         <>
             <aside className={styles.sidebar} ref={sidebar}>
                 <section className={styles.sidebar_top}>
-                    <img className={styles.sidebar_logo} src={icons['logoLight']}/>
+                    <img className={styles.sidebar_logo} src={theme ? icons['logoDark'] : icons['logoLight']}/>
                     <div className={styles.sidebar_boards}>
-                        <h4 className={styles.sidebar_title}>
-                            ALL BOARDS 8
-                        </h4>
                         <DisplayBoards/>
                         <button className={styles.sidebar_addBoardButton} onClick={handleDialog}>
                             <svg className={styles.iconContainer} width="16" height="16" xmlns="http://www.w3.org/2000/svg">

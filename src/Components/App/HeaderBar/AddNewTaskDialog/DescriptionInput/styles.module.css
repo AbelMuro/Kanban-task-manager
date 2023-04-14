@@ -19,6 +19,7 @@
     height: 112px;
     resize: none;
     color: var(--dialog-input-text-color);
+    background-color: var(--dialog-input-bg-color);
     padding: 8px 16px;
     border-radius: 4px;
     font-family: var(--font-jakarta);
@@ -30,7 +31,7 @@
 
 
 .inputContainer_textarea::placeholder{
-    color: rgba(0, 1, 18, 0.25);
+    color: var(--dialog-placeholder-text-color);
 }
 
 

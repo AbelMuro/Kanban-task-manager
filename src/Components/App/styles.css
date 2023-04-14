@@ -23,12 +23,13 @@ fieldset{
 
     --sidebar-bg: white;
     --sidebar-switch-box: #F4F7FD;
-    --sidebar-switch-icon-color: white;
     --sidebar-button-hover-bg: rgba(99, 95, 199, 0.1);
-
+    --sidebar-border-color: #E4EBFA;
     --dialog-bg-color: white;
     --dialog-popup-bg: white;  
+    --dialog-popup-box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25);
     --dialog-input-text-color: #000112;
+    --dialog-placeholder-text-color: rgba(255, 255, 255, 0.25);
     --dialog-input-bg-color: white;
     --dialog-add-button: rgba(99, 95, 199, 0.1);
     --dialog-hover-add-button: rgba(99, 95, 199, 0.25);
@@ -42,8 +43,9 @@ fieldset{
     --add-new-column-button-bg: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
 
     --header-bg-color: white;
-    --header-add-task-hover-button: #A8A4FF;
     --header-title-text-color: #000112;
+    --header-border-color: #E4EBFA;
+
 
     --closest: 50;
     --close: 40;

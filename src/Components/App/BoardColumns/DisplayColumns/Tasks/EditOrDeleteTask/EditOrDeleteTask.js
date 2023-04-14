@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react';
 import styles from './styles.module.css';
 import icons from './icons';
 
-function EditOrDelete({handleDelete}) {
+function EditOrDelete({handleDelete, handleEdit}) {
     const [open, setOpen] = useState(false);
     const popup = useRef();
 
@@ -24,9 +24,7 @@ function EditOrDelete({handleDelete}) {
                 !e.target.matches('.' + styles.popup) && !e.target.matches('.' + styles.popup_option))
                 setOpen(false);
         }
-
         document.addEventListener('click', handleClick);
-
         return () => {
             document.removeEventListener('click', handleClick);
         }
@@ -36,10 +34,10 @@ function EditOrDelete({handleDelete}) {
         <div className={styles.container}>
             <img src={icons['threeDots']} className={styles.threeDotsIcon} onClick={handlePopup}/>
             <div className={styles.popup} ref={popup}>
-                <button className={styles.popup_option}>
+                <button className={styles.popup_option} onClick={handleEdit}>
                     Edit Task
                 </button>
-                <button className={styles.popup_option} onClick={handleDelete}>
+                <button className={styles.popup_option} onClick={handleDelete} >
                     Delete Task
                 </button>
             </div>

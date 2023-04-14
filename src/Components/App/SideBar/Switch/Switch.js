@@ -1,9 +1,12 @@
 import React, {useRef, useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import SwitchTheme from './SwitchTheme';
 import styles from './styles.module.css';
 import icons from './icons';
 
 function Switch(){ 
     const handleRef = useRef();
+    const dispatch = useDispatch();
     const [turnSwitch, setTurnSwitch] = useState(false);
 
     const handleSwitch = () => {
@@ -11,10 +14,18 @@ function Switch(){
     }
 
     useEffect(() => {
-        if(turnSwitch)
-            handleRef.current.style.left = '23px'
-        else 
+        if(turnSwitch){
+            handleRef.current.style.left = '23px';
+            SwitchTheme(true);
+            dispatch({type: 'set theme', theme: true});
+        }
+           
+        else {
             handleRef.current.style.left = '';
+            SwitchTheme(false);
+            dispatch({type: 'set theme', theme: false});
+        }
+            
 
     }, [turnSwitch])
 
