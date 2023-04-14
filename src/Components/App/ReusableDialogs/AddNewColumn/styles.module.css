@@ -1,3 +1,11 @@
+.dialogTitle_title{
+    font-family: var(--font-jakarta);
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+    line-height: var(--h2-line-height);
+    color: var(--dialog-title-text-color);
+}
+
 .dialogContent_buttons{
     display: flex;
     gap: 16px;

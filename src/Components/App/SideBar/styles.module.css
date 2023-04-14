@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 54px;
+    gap: 55px;
 }
 
 .sidebar_logo{
@@ -97,4 +97,19 @@
 
 .icon{
     fill: #635FC7;
+}
+
+
+@media(max-width: 1000px){
+    .sidebar{
+        width: 261px;
+    }
+    .sidebar_addBoardButton{
+        padding-left: 16px;
+    }
+
+    .sidebar_hideShowButton{
+        padding-left: 24px;
+        width: 232px;
+    }
 }

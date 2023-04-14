@@ -1,17 +1,19 @@
 import React, {useRef, useState, useEffect} from 'react';
-import Switch from './Switch';
+import { useMediaQuery } from '@mui/material';
 import styles from './styles.module.css';
 import HideShowIcon from './HideShowIcon';
-import DisplayBoards from './DisplayBoards';
+import {DisplayBoards, Switch} from '../ReusableComponents';
 import {useDispatch, useSelector} from 'react-redux';
 import icons from './icons';
 
 function SideBar() {
     const dispatch = useDispatch();
     const [showSidebar, setShowSidebar] = useState(true);
+    const mobile = useMediaQuery('(max-width: 780px)');
     const theme = useSelector(state => state.switchTheme);
     const hideShowIconRef = useRef();
     const sidebar = useRef();
+    const displaySidebarButton = useRef();
 
     const handleEnter = () => {
         hideShowIconRef.current.style.fill = '#635FC7';
@@ -29,6 +31,11 @@ function SideBar() {
         dispatch({type: 'set add board dialog', open: true});
     }
 
+    useEffect(() => {
+        if(mobile)
+            setShowSidebar(false);
+    }, [mobile])
+
 //this will make the sidebar move to the left and out of the screen
     useEffect(() => {
         if(showSidebar)
@@ -41,6 +48,8 @@ function SideBar() {
     useEffect(() => {
         dispatch({type: 'set sidebar', show: showSidebar});
     }, [showSidebar])
+
+
 
 
     return(
@@ -72,7 +81,7 @@ function SideBar() {
             </aside>    
             {showSidebar ? 
                 <></> : 
-                <button className={styles.visibilityButton} onClick={handleSidebar}>
+                <button className={styles.visibilityButton} onClick={handleSidebar} ref={displaySidebarButton} style={mobile ? {display: 'none'} : {}}>
                     <img src={icons['showIcon']} className={styles.visibilityButton_icon}/>
                 </button>
             }

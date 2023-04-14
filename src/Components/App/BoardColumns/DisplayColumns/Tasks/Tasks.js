@@ -3,6 +3,7 @@ import {Dialog, DialogTitle, DialogContent} from '@mui/material';
 import {useSelector, useDispatch} from 'react-redux';
 import traverseThroughBoard from './TraverseThroughBoard';
 import removeTaskFromColumn from './RemoveTaskFromColumn';
+import addTaskToColumn from './AddTaskToColumn';
 import EditOrDeleteTask from './EditOrDeleteTask';
 import CheckBox from './CheckBox';
 import SelectBox from './SelectBox';
@@ -49,25 +50,19 @@ function Tasks({currentTask, currentColumn}) {
         setOpen(false);
     }
 
-
+    //updating the local storage and dispatching an action with the updated board
     const handleEdit = () => {
-        //collecting data from the input check boxes
+
         const completedSubTasks = allCheckboxes.current.map((checkbox) => {
             const subtaskDesc = JSON.parse(checkbox.getAttribute('data-task')).subtaskDesc; 
             return {subtaskDesc: subtaskDesc, completed: checkbox.checked}
         })
 
-
-
-
-        
-//this is where i left off, now i need to pass the new coliumn to traverseThroughBoard()
         const boards = JSON.parse(localStorage.getItem('boards'));
         removeTaskFromColumn(boards, currentBoard, currentColumn, currentTask);
-        const updatedBoard = traverseThroughBoard(boards, currentBoard, currentColumn, currentTask, (task) => {
-            task.subTasks = completedSubTasks;
-        })
+        const updatedBoard = addTaskToColumn(boards, currentBoard, column.current.state, {taskTitle: currentTask.taskTitle, description: currentTask.description, subTasks: completedSubTasks} )
         localStorage.setItem('boards', JSON.stringify(boards));
+
         dispatch({type: 'set board', board: updatedBoard});
         setOpen(false);
     }

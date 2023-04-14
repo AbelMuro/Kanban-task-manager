@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import { useMediaQuery } from '@mui/material';
 import styles from './styles.module.css';
 import MessageBox from './MessageBox';
 import DisplayColumns from './DisplayColumns';
@@ -8,6 +9,7 @@ function BoardColumns() {
     const board = useSelector(state => state.board);
     const dispatch = useDispatch(state => state.addBoard);
     const sidebar = useSelector(state => state.showSidebar);
+    const tablet = useMediaQuery('(max-width: 1000px)');
 
     const handleAddNewColumn = () => {
         dispatch({type: 'set add column dialog', open: true});
@@ -19,8 +21,13 @@ function BoardColumns() {
 
     useEffect(() => {
         const container = document.querySelector('.' + styles.container);
-        if(sidebar)
-            container.style.padding = '0px 0px 0px 300px';
+        if(sidebar){
+            if(tablet)
+                container.style.padding = '0px 0px 0px 261px'
+            else
+                container.style.padding = '0px 0px 0px 300px';
+        }
+            
         else
             container.style.padding = '';
 

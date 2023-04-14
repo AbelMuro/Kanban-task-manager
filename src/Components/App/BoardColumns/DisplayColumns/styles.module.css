@@ -57,9 +57,6 @@ div.column:nth-child(3) .column_title .dot{
 }
 
 
-
-
-
 .addNewColumnButton{
     cursor: pointer;
     flex-shrink: 0;
