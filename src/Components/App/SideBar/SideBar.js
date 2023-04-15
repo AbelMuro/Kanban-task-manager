@@ -67,7 +67,7 @@ function SideBar() {
                     </div>                 
                 </section>
                 <section className={styles.sidebar_bottom}>
-                    <Switch/>
+                    {mobile ? <></> : <Switch/>}
                     <button 
                         className={styles.sidebar_hideShowButton} 
                         onMouseEnter={handleEnter} 

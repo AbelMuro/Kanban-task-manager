@@ -14,6 +14,29 @@
 
 }
 
+.addBoardButton{
+    width: 240px;
+    height: 48px;
+    font-family: var(--font-jakarta);
+    font-size: 15px;
+    line-height: 18.9px;
+    font-weight: 700;
+    border: none;
+    color: #635FC7;
+    background-color: transparent;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+
+.iconBoard{
+    width: 16px;
+    object-fit: contain;
+}
+
 @media(max-width: 780px){
     .header_kanban_title{
         font-size: 18px;
