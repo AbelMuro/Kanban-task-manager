@@ -41,3 +41,9 @@
 .dialogContent_submitButton:hover{
     background-color: #A8A4FF;
 }
+
+@media(max-width: 560px){
+    .dialogContent_buttons{
+        flex-direction: column;
+    }
+}

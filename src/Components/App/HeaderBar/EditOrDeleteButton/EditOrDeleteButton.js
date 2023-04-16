@@ -8,7 +8,7 @@ function EditOrDeleteButton() {
     const [displayPopup, setDisplayPopup] = useState(false);
     const popup = useRef();
 
-    const handlePopup = () => {
+    const handlePopup = (e) => {
         setDisplayPopup(!displayPopup);
     }
 
@@ -23,8 +23,9 @@ function EditOrDeleteButton() {
     useEffect(() => {
         const handleClick = (e) => {
             if(!e.target.matches('.' + styles.selectBox) && !e.target.matches('.' + styles.selectBox_threeDots_button) && 
-               !e.target.matches('.' + styles.selectBox_popup) && !e.target.matches('.' + styles.selectBox_popup_option))
-                setDisplayPopup(false);
+               !e.target.matches('.' + styles.selectBox_popup) && !e.target.matches('.' + styles.selectBox_popup_option) && 
+               !e.target.matches('.' + styles.clickArea))
+                    setDisplayPopup(false);
         }
         if(displayPopup)
             document.addEventListener('click', handleClick);
@@ -38,9 +39,13 @@ function EditOrDeleteButton() {
 
     return(
         <section className={styles.selectBox}>
-            <img src={icons['threeDots']} 
-                className={styles.selectBox_threeDots_button} 
-                onClick={handlePopup}/>
+            <div className={styles.clickArea} onClick={handlePopup}>
+                <img 
+                    src={icons['threeDots']} 
+                    className={styles.selectBox_threeDots_button} 
+                    />                
+            </div>
+
             <div className={styles.selectBox_popup} ref={popup}>
                 <EditBoardDialog/>
                 <DeleteBoardDialog />

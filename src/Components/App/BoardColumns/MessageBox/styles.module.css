@@ -34,3 +34,10 @@
 .messageBox_addButton:hover{
     background-color: #A8A4FF;
 }
+
+@media(max-width: 560px){
+    .messageBox{
+        width: 343px;
+        gap: 25px;
+    }
+}

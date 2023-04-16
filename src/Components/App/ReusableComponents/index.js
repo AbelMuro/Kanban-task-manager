@@ -1,5 +1,5 @@
 import DisplayBoards from './DisplayBoards';
-import Switch from './Switch';
+import SwitchTheme from './SwitchTheme';
 import useLocalStorage from './useLocalStorage';
 
-export {DisplayBoards, Switch, useLocalStorage};
+export {DisplayBoards, SwitchTheme, useLocalStorage};

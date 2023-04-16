@@ -31,7 +31,7 @@
 .header_addNewTask{
     width: 193px;
     display: flex;
-    justify-content: space-between;
+    gap: 14px;
     align-items: center;
 }
 
@@ -63,6 +63,7 @@
 
     .header_addNewTask{
         width: 68px;
+        gap: 6px;
     }
 }
 

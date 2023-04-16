@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { useMediaQuery} from '@mui/material';
-import { DisplayBoards, useLocalStorage, Switch} from '../../ReusableComponents';
+import { DisplayBoards, useLocalStorage} from '../../ReusableComponents';
+import Switch from './Switch';
 import { useSelector, useDispatch } from 'react-redux';
 import icons from './icons';
 import styles from './styles.module.css';
 
-// now i need to restyle this component with css variables
 function MobileMenu({isMobile}) {
     const [open, setOpen] = useState(false);
     const showSidebar = useSelector(state => state.showSidebar);

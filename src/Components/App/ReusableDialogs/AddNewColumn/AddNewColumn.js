@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 import ColumnNameInput from './ColumnNameInput';
 import {useSelector, useDispatch} from 'react-redux';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
@@ -49,10 +49,8 @@ function AddNewColumn() {
                             <button type='button' className={styles.dialogContent_cancelButton} onClick={handleDialog}>
                                 Cancel    
                             </button> 
-                        </div>
-                     
+                        </div>                     
                     </form>
-
                 </DialogContent>
             </Dialog>
         </>

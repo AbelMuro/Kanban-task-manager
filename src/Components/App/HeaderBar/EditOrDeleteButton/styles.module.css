@@ -1,8 +1,15 @@
 .selectBox{
-    position:relative;
+    position: relative;
 }
 
-/* this is where i left off*/
+.clickArea{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
 .selectBox_popup{
     position: absolute;
     right: 0px;
@@ -23,12 +30,11 @@
 .selectBox_threeDots_button{
     height: 20px;
     object-fit: contain;
-    cursor: pointer;
 }
 
+
 @media(max-width: 780px){
-    .selectBox_threeDots_button{
+    .selectBox_threeDots_button, .clickArea{
         height: 16px;
-        margin-top: 5px;
     }
 }

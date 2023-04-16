@@ -2,7 +2,8 @@ import React, {useRef, useState, useEffect} from 'react';
 import { useMediaQuery } from '@mui/material';
 import styles from './styles.module.css';
 import HideShowIcon from './HideShowIcon';
-import {DisplayBoards, Switch} from '../ReusableComponents';
+import Switch from './Switch';
+import {DisplayBoards} from '../ReusableComponents';
 import {useDispatch, useSelector} from 'react-redux';
 import icons from './icons';
 
@@ -67,7 +68,7 @@ function SideBar() {
                     </div>                 
                 </section>
                 <section className={styles.sidebar_bottom}>
-                    {mobile ? <></> : <Switch/>}
+                    <Switch/>
                     <button 
                         className={styles.sidebar_hideShowButton} 
                         onMouseEnter={handleEnter} 
