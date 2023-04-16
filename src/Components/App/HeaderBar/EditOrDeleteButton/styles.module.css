@@ -13,7 +13,7 @@
 .selectBox_popup{
     position: absolute;
     right: 0px;
-    bottom: -110px;
+    bottom: -120px;
     z-index: var(--close);
     background-color: var(--dialog-popup-bg);
     width: 192px;

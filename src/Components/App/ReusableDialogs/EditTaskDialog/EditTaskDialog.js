@@ -80,15 +80,15 @@ function EditTaskDialog() {
 
     useEffect(() => {
         if(!currentTask) return;
-        let completedTasks = 0;
 
+        let completedTasks = 0;
         currentTask.subTasks.forEach((subtask) => {
             if(subtask.completed)
-                completedTasks++;
+                completedTasks = completedTasks + 1;
         })
 
         setCompleted(completedTasks);
-    }, [])
+    }, [currentTask])
 
 
     return(            

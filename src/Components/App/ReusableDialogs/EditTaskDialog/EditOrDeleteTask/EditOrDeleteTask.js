@@ -21,10 +21,12 @@ function EditOrDelete({handleDelete, handleEdit}) {
     useEffect(() => {
         const handleClick = (e) => {
             if(!e.target.matches('.' + styles.container) && !e.target.matches('.' + styles.threeDotsIcon) && 
-                !e.target.matches('.' + styles.popup) && !e.target.matches('.' + styles.popup_option))
+                !e.target.matches('.' + styles.popup) && !e.target.matches('.' + styles.popup_option) && 
+                !e.target.matches('.' + styles.clickArea))
                 setOpen(false);
         }
         document.addEventListener('click', handleClick);
+        
         return () => {
             document.removeEventListener('click', handleClick);
         }
@@ -32,7 +34,10 @@ function EditOrDelete({handleDelete, handleEdit}) {
 
     return(
         <div className={styles.container}>
-            <img src={icons['threeDots']} className={styles.threeDotsIcon} onClick={handlePopup}/>
+            <div className={styles.clickArea} onClick={handlePopup}>
+                <img src={icons['threeDots']} className={styles.threeDotsIcon}/>                
+            </div>
+
             <div className={styles.popup} ref={popup}>
                 <button className={styles.popup_option} onClick={handleEdit}>
                     Edit Task

@@ -32,7 +32,7 @@ const darkTheme = [
     '--sidebar-border-color: #3E3F4E',
     '--dialog-bg-color: #2B2C37',
     '--dialog-popup-bg: #20212C',
-    '--dialog-popup-box-shadow: ""',
+    '--dialog-popup-box-shadow: 0px 10px 20px rgba(54, 78, 126, 0.25)',
     '--dialog-input-text-color: white',
     '--dialog-input-bg-color: #2B2C37',
     '--dialog-placeholder-text-color: rgba(255, 255, 255, 0.25)',
