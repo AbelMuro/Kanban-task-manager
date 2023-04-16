@@ -32,9 +32,11 @@ const TitleInput = forwardRef((props, ref) => {
     }
 
     useEffect(() => {
-        input.current.setCustomValidity('');
-        emptyMessage.current.style.display = '';
-        input.current.style.border = '';
+        const inputElement = document.querySelector('.' + styles.inputContainer_input);
+        const emptyMessage = document.querySelector('.' + styles.emptyMessage);
+        inputElement.setCustomValidity('');
+        emptyMessage.style.display = '';
+        inputElement.style.border = '';
     }, [text])
 
 

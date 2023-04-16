@@ -13,7 +13,6 @@ function SideBar() {
     const mobile = useMediaQuery('(max-width: 780px)');
     const theme = useSelector(state => state.switchTheme);
     const hideShowIconRef = useRef();
-    const sidebar = useRef();
     const displaySidebarButton = useRef();
 
     const handleEnter = () => {
@@ -40,10 +39,12 @@ function SideBar() {
 
 //this will make the sidebar move to the left and out of the screen
     useEffect(() => {
+        const sidebar = document.querySelector('.' + styles.sidebar);
+
         if(showSidebar)
-            sidebar.current.style.left = '';
+            sidebar.style.left = '';
         else
-            sidebar.current.style.left = '-300px';        
+            sidebar.style.left = '-300px';        
     }, [showSidebar])
 
 //this will dispatch an action to the reducer, telling all components that the sidebar is hidden or visible
@@ -54,7 +55,7 @@ function SideBar() {
 
     return(
         <>
-            <aside className={styles.sidebar} ref={sidebar}>
+            <aside className={styles.sidebar}>
                 <section className={styles.sidebar_top}>
                     <img className={styles.sidebar_logo} src={theme ? icons['logoDark'] : icons['logoLight']}/>
                     <div className={styles.sidebar_boards}>

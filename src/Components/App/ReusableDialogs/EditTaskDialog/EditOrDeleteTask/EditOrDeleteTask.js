@@ -11,10 +11,11 @@ function EditOrDelete({handleDelete, handleEdit}) {
     }
 
     useEffect(() => {
+        const popup = document.querySelector('.' + styles.popup);
         if(open)
-            popup.current.style.display = 'flex';
+            popup.style.display = 'flex';
         else
-            popup.current.style.display = '';
+            popup.style.display = '';
             
     }, [open])
 
@@ -38,7 +39,7 @@ function EditOrDelete({handleDelete, handleEdit}) {
                 <img src={icons['threeDots']} className={styles.threeDotsIcon}/>                
             </div>
 
-            <div className={styles.popup} ref={popup}>
+            <div className={styles.popup}>
                 <button className={styles.popup_option} onClick={handleEdit}>
                     Edit Task
                 </button>

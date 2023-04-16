@@ -20,18 +20,20 @@ const StatusSelectBox = forwardRef((props, ref) => {
     }
 
     useEffect(() => {
+        const arrow = document.querySelector('.' + styles.select_box_arrow);
         if(openPopup)
-            arrowRef.current.style.transform = 'rotate(180deg)';
+            arrow.style.transform = 'rotate(180deg)';
         else    
-            arrowRef.current.style.transform = '';
+            arrow.style.transform = '';
     }, [openPopup])
 
 //this will make the popup appear when the user clicks on the select box
     useEffect(() => {
+        const popup = document.querySelector('.' + styles.select_popup);
         if(openPopup)
-            popup.current.style.display = 'flex';
+            popup.style.display = 'flex';
         else
-            popup.current.style.display = '';
+            popup.style.display = '';
     }, [openPopup])
 
 //this will scroll down automatically when the popup appears

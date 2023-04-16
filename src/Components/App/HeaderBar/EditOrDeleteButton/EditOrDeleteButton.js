@@ -13,10 +13,11 @@ function EditOrDeleteButton() {
     }
 
     useEffect(() => {
+        const popupElement = document.querySelector('.' + styles.selectBox_popup);
         if(displayPopup)
-            popup.current.style.display = 'flex';
+            popupElement.style.display = 'flex';
         else
-            popup.current.style.display = '';
+            popupElement.style.display = '';
 
     }, [displayPopup])
 
