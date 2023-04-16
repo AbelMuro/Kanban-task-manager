@@ -1,5 +1,6 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
+import {useMediaQuery} from '@mui/material';
 import {useSelector, useDispatch} from 'react-redux';
 import styles from './styles.module.css';
 import BoardNameInput from './BoardNameInput';
@@ -7,6 +8,7 @@ import ColumnInputs from './ColumnInputs';
 
 function DialogBox() {
     const open = useSelector(state => state.addBoard);
+    const mobile = useMediaQuery('(max-width: 560px)');
     const dispatch = useDispatch();
     const boardName = useRef();
     const allColumns = useRef();
@@ -50,14 +52,18 @@ function DialogBox() {
         <>
             <Dialog open={open} 
                     PaperProps={{
+                            sx: {overflowY: 'initial'},
                             style: {
                             backgroundColor: 'var(--dialog-bg-color)',
-                            },
+                            }
                         }}>
-                <DialogTitle className={styles.dialog_title}>
-                    Add New Board
+                <DialogTitle sx={mobile ? {padding: '24px'} : {padding: '32px 32px 24px 32px'}}>
+                    <span className={styles.dialogTitle_title}>
+                        Add New Board
+                    </span>
+                    
                 </DialogTitle>
-                <DialogContent className={styles.dialog_content} sx={{padding: '0px 32px 32px 32px'}}>
+                <DialogContent className={styles.dialog_content} sx={mobile ? {padding: '0px 24px 24px 24px'} : {padding: '0px 32px 32px 32px'}}>
                     <form onSubmit={handleSubmit} className={styles.form}>
                         <BoardNameInput ref={boardName}/>
                         <ColumnInputs ref={allColumns}/>

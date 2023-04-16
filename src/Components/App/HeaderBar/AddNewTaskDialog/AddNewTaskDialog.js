@@ -3,9 +3,11 @@ import TitleInput from './TitleInput';
 import DescriptionInput from './DescriptionInput';
 import SubTasksInput from './SubTasksInput';
 import StatusSelectBox from './StatusSelectBox';
+import {useMediaQuery} from '@mui/material';
 import {useSelector, useDispatch} from 'react-redux';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
 import styles from './styles.module.css';
+
 
 
 function AddNewTaskDialog() {
@@ -16,6 +18,7 @@ function AddNewTaskDialog() {
     const taskDesc = useRef();
     const subtasks = useRef();
     const subtaskColumn = useRef();
+    const mobile = useMediaQuery('(max-width: 780px)');
 
     const handleClick = () => {
         setOpen(!open);
@@ -58,7 +61,7 @@ function AddNewTaskDialog() {
         setOpen(false);
     }
 
-
+//this will disabled the button IF there is no board selected or if there are no columns available
     useEffect(() => {
         const button = document.querySelector('.' + styles.addNewTask_button);
 
@@ -66,36 +69,39 @@ function AddNewTaskDialog() {
             button.disabled = false;
         else
             button.disabled = true;
-        
 
     }, [currentBoard])
 
+    //this will close the dialog if the user clicks on the background
     useEffect(() => {
         const handleClick = (e) => {
             if(e.target.matches('.MuiDialog-container'))
                 setOpen(false);
         }
-        document.addEventListener('click', handleClick);
+        if(open)
+            document.addEventListener('click', handleClick);
+        else
+            document.removeEventListener('click', handleClick);
 
         return () => {
             document.removeEventListener('click', handleClick);
         }
-    }, [])
+    }, [open])
 
-    return(              
+    return (              
         <>
             <button className={styles.addNewTask_button} onClick={handleClick}>
-                + Add New Task
+                {mobile ? <span>+</span> : '+ Add New Task'}
             </button>         
             <Dialog open={open} PaperProps={{ sx: { overflowY: 'initial'}, style: {
                             backgroundColor: 'var(--dialog-bg-color)',
                             }}}>
-                <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
+                <DialogTitle sx={mobile ? {padding: '24px'} : {padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_h1}>    {/* i had to use <span> instead of <h2> because <DialogTitle> gets transpiled into <h2>*/}
                         Add New Task
                     </span>
                 </DialogTitle>
-                <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 24px 32px'}}>
+                <DialogContent className={styles.dialogContent} sx={mobile ? {padding: '0px 24px 24px 24px'} : {padding: '0px 32px 24px 32px'}}>
                     <form onSubmit={handleSubmit}>
                         <TitleInput ref={taskTitle}/>
                         <DescriptionInput ref={taskDesc}/>

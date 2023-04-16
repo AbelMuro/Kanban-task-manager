@@ -3,13 +3,12 @@
 }
 
 
-.dialog_title{
+.dialogTitle_title{
     font-family: var(--font-jakarta);
     font-size: var(--h2-font-size);
     font-weight: var(--h2-font-weight);
     line-height: var(--h2-line-height);
     color: var(--dialog-title-text-color);
-    padding: 32px 32px 24px 32px;
 }
 
 .form{
@@ -37,4 +36,10 @@
 
 .dialog_submit:hover{
     background-color: #A8A4FF;
+}
+
+@media(max-width: 560px) {
+    .dialog_content{
+        width: 343px;
+    }
 }

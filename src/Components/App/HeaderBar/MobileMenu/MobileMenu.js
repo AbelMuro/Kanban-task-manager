@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { useMediaQuery, Dialog, DialogContent } from '@mui/material';
+import { useMediaQuery} from '@mui/material';
 import { DisplayBoards, useLocalStorage, Switch} from '../../ReusableComponents';
 import { useSelector, useDispatch } from 'react-redux';
 import icons from './icons';
@@ -9,12 +9,13 @@ import styles from './styles.module.css';
 function MobileMenu({isMobile}) {
     const [open, setOpen] = useState(false);
     const showSidebar = useSelector(state => state.showSidebar);
+    const currentBoard = useSelector(state => state.board);
     const dispatch = useDispatch();
     const tablet = useMediaQuery('(max-width: 1000px)');
     const boards = useLocalStorage('boards');
 
     const handleMobileMenu = () => {
-        setOpen(true);
+        setOpen(!open);
     }
 
     const handleAddBoardDialog = () => {
@@ -42,25 +43,65 @@ function MobileMenu({isMobile}) {
             dispatch({type: 'set board', board: boards[0]});
     }, [])
 
+    //this will open and close the mobile menu
+    useEffect(() => {
+        const popup = document.querySelector('.' + styles.overlay);
+        const arrow = document.querySelector('.' + styles.arrowDown);
+
+        if(open){
+            arrow.style.transform = 'rotate(180deg)';
+            popup.style.display = 'block';
+            setTimeout(() => {                              //im using setTimout because its async, this way the animation created by the transition property wont be cancelled
+                popup.style.opacity = '1';
+            }, 1)
+        }
+        else{
+            arrow.style.transform = '';
+            popup.style.opacity = '';
+            setTimeout(() => {
+                popup.style.display = '';
+            }, 200)
+        }
+    }, [open])
+
+    //this will prevent any scrolling when the mobile menu is open
+    useEffect(() => {
+        const handleScroll = () => {
+            window.scrollTo(0,0);
+        }
+        if(open)
+            document.addEventListener('scroll', handleScroll);
+        else
+            document.removeEventListener('scroll', handleScroll);
+
+        return () => {
+            document.removeEventListener('scroll', handleScroll)
+        }
+    }, [open])
+
+    //this will close the mobile popup menu everytime there is a change in the state in the store, 
+    //remember that in the sidebar component, the <DisplayBoards/> component gets in and out from the dom, 
+    //which causes multiple renders and changes in state
+    useEffect(() => {
+        setOpen(false);
+    }, [currentBoard])
+
     return(
         <>
             <h1 className={styles.header_kanban_title} onClick={isMobile ? handleMobileMenu : () => {}}>
                 Platform Launch
-                {isMobile ? 
-                    <img src={icons['arrowDown']} className={styles.arrowDown}/> 
-                    : 
-                    <></>}
+                <img src={icons['arrowDown']} className={styles.arrowDown} style={isMobile ? {display: 'block'} : {display: ''}}/> 
             </h1>
-            <Dialog open={open}>
-                <DialogContent sx={{padding: '16px 24px 16px 0px'}}>
+            <div className={styles.overlay}>
+                <div className={styles.mobilePopup}>
                     <DisplayBoards/>
                     <button className={styles.addBoardButton} onClick={handleAddBoardDialog}>
                         <img className={styles.iconBoard} src={icons['iconBoard']} alt='board icon'/>
                         + Create New Board
                     </button>
                     <Switch/>
-                </DialogContent>
-            </Dialog> 
+                </div>
+            </div>
         </>
     )
 }

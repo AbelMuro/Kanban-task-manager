@@ -86,6 +86,8 @@
 }
 
 .inputContainer_closeIcon{
+    flex-shrink: 0;
+    flex-grow: 0;
     mask: url('./icons/icon-cross.svg');
     -webkit-mask: url('./icons/icon-cross.svg');
     width: 15px;
@@ -96,4 +98,10 @@
 
 .inputContainer_closeIcon:hover {
     background-color: #EA5555;
+}
+
+@media(max-width: 560px){
+    .inputContainers_input{
+        width: 264px;
+    }
 }

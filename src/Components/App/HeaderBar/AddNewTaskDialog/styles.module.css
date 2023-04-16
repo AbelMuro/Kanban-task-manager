@@ -18,7 +18,7 @@
 
 .addNewTask_button:disabled{
     background-color: rgba(99, 95, 199, 0.25);
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
 
@@ -52,3 +52,22 @@
     background-color: #A8A4FF;
 }
 
+@media(max-width: 780px){
+    .addNewTask_button{
+        width: 48px;
+        height: 32px;
+        font-size: 23px;
+        line-height: 18px;
+    }
+
+    .addNewTask_button span{
+        position: relative;
+        bottom: 3px;
+    }
+}
+
+@media(max-width: 560px){
+    .dialogContent{
+        width: 343px;
+    }
+}

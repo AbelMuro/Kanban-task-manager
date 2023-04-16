@@ -57,6 +57,8 @@
 }
 
 .inputContainer_subtask_closeIcon{
+    flex-grow: 0;
+    flex-shrink: 0;
     width: 15px;
     height: 15px;
     mask: url('./icons/icon-cross.svg');
@@ -101,4 +103,10 @@
 
 .inputContainer_addButton:hover{
     background-color: var(--dialog-hover-add-button);
+}
+
+@media(max-width: 560px) {
+    .inputContainer_subtask_input{
+        width: 264px;
+    }
 }

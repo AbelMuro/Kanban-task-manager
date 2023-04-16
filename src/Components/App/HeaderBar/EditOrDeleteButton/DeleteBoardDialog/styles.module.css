@@ -52,6 +52,7 @@
 
 .dialogActions_buttons_delete{
     width: 200px;
+    height: 40px;
     border:none;
     border-radius: 20px;
     background-color: #EA5555;
@@ -64,6 +65,7 @@
 
 .dialogActions_buttons_cancel{
     width: 200px;
+    height: 40px;
     border: none;
     border-radius: 20px;
     background-color: var(--dialog-add-button);
@@ -72,4 +74,18 @@
 
 .dialogActions_buttons_cancel:hover{
     background-color: var(--dialog-hover-add-button);
+}
+
+@media(max-width: 560px){
+    .dialogActions_buttons{
+        height: 96px;
+        flex-direction: column;
+    }
+    .dialogActions_buttons_cancel, .dialogActions_buttons_delete {
+        width: 295px;
+    }
+
+    .dialogContent_desc{
+        width: 295px;
+    }
 }

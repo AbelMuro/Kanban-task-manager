@@ -1,4 +1,4 @@
-import { SideBarReducer, BoardReducer, SwitchThemeReducer ,OpenAddBoardDialog, OpenAddColumnDialog} from "./Reducers.js";
+import { SideBarReducer, BoardReducer, SwitchThemeReducer ,OpenAddBoardDialog, OpenAddColumnDialog, OpenEditTaskDialog} from "./Reducers.js";
 import { combineReducers } from "redux";
 
 const RootReducer = combineReducers({
@@ -7,6 +7,7 @@ const RootReducer = combineReducers({
     switchTheme : SwitchThemeReducer,
     addBoard: OpenAddBoardDialog,
     addColumn: OpenAddColumnDialog,
+    editTask: OpenEditTaskDialog
 });
 
 export default RootReducer;

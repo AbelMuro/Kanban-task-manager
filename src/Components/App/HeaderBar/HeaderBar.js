@@ -1,5 +1,5 @@
 import React from 'react';
-import EditBoardButton from './EditBoardButton';
+import EditOrDeleteButton from './EditOrDeleteButton';
 import AddNewTaskDialog from './AddNewTaskDialog';
 import MobileMenu from './MobileMenu';
 import { useMediaQuery } from '@mui/material';
@@ -18,11 +18,11 @@ function HeaderBar() {
                             theme ? icons['logoDarkTheme'] : icons['logoLightTheme']} 
                      className={styles.header_kanban_logo} 
                      alt={'kanban logo'}/>
-                <MobileMenu isMobile={mobile}/> 
+                <MobileMenu isMobile={mobile}/>             {/*  <---- this component is the Platform launch title, but it also acts like a button for the mobile menu*/}
             </section>
             <section className={styles.header_addNewTask}>   
                 <AddNewTaskDialog/>
-                <EditBoardButton/>
+                <EditOrDeleteButton/>
             </section>
         </header>
     )

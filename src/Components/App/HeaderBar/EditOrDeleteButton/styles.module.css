@@ -25,3 +25,10 @@
     object-fit: contain;
     cursor: pointer;
 }
+
+@media(max-width: 780px){
+    .selectBox_threeDots_button{
+        height: 16px;
+        margin-top: 5px;
+    }
+}

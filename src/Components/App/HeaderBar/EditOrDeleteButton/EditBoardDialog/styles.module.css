@@ -50,3 +50,9 @@
 .dialogContent_submit:hover{
     background-color: #A8A4FF;
 }
+
+@media(max-width: 560px){
+    .dialogContent{
+        width: 343px;
+    }
+} 

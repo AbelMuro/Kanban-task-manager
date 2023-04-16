@@ -1,4 +1,4 @@
-import React, {useState, useEffect,forwardRef, useImperativeHandle, useRef} from 'react';
+import React, {useState, useEffect,forwardRef, useImperativeHandle, useRef, memo} from 'react';
 import styles from './styles.module.css';
 
 const TitleInput = forwardRef((props, ref) => {
@@ -66,4 +66,4 @@ const TitleInput = forwardRef((props, ref) => {
         </fieldset>)
 })
 
-export default TitleInput;
+export default memo(TitleInput);

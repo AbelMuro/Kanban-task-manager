@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {Dialog, DialogTitle, DialogContent} from '@mui/material';
+import {useMediaQuery} from '@mui/material';
 import {useSelector, useDispatch} from 'react-redux';
 import BoardNameInput from './BoardNameInput';
 import EditColumns from './EditColumns';
@@ -12,6 +13,7 @@ function EditBoardDialog(){
     const dispatch = useDispatch();
     const newBoardName = useRef()
     const newColumns = useRef();
+    const mobile = useMediaQuery('(max-width: 560px)');
 
     const handlePopup = () => {
         setOpen(!open);
@@ -69,12 +71,12 @@ function EditBoardDialog(){
             <Dialog open={open} PaperProps={{ sx: { overflowY: 'initial'}, style: {
                             backgroundColor: 'var(--dialog-bg-color)',
                 }}}>
-                <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
+                <DialogTitle sx={mobile ? {padding: '24px'} : {padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_title}>
                         Edit Board
                     </span>
                 </DialogTitle>
-                <DialogContent className={styles.dialogContent} sx={{padding: '0px 32px 24px 32px'}}>
+                <DialogContent className={styles.dialogContent} sx={mobile ? {padding: '0px 24px 32px 24px'} : {padding: '0px 32px 24px 32px'}}>
                     <form onSubmit={handleSubmit}>
                         <BoardNameInput ref={newBoardName}/>
                         {board ? <EditColumns ref={newColumns} columns={board.columns}/> : <></> }

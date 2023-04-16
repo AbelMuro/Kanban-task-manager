@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {Dialog, DialogTitle, DialogContent, DialogActions} from '@mui/material';
+import {Dialog, DialogTitle, DialogContent, DialogActions, useMediaQuery} from '@mui/material';
 import styles from './styles.module.css';
 
 function DeleteBoardDialog() {
@@ -8,6 +8,7 @@ function DeleteBoardDialog() {
     const dispatch = useDispatch();
     const [openPopup, setOpenPopup] = useState(false);
     const [deleteBoard, setDeleteBoard] = useState(false);
+    const mobile = useMediaQuery('(max-width: 560px)');
 
     const handlePopup = () => {
         setOpenPopup(!openPopup);
@@ -73,22 +74,23 @@ function DeleteBoardDialog() {
                 Delete Board
             </button>
             <Dialog open={openPopup} PaperProps={{
+                            sx: {overflowY: 'initial'},
                             style: {
                             backgroundColor: 'var(--dialog-bg-color)',
                             },
                         }}>
-                <DialogTitle sx={{padding: '32px 32px 24px 32px'}}>
+                <DialogTitle sx={mobile ? {padding: '24px'} : {padding: '32px 32px 24px 32px'}}>
                     <span className={styles.dialogTitle_title}>
                         Delete this board?
                     </span>
                 </DialogTitle>
-                <DialogContent sx={{padding: '0px 32px 24px 32px'}}>
+                <DialogContent sx={mobile ? {padding: '0px 24px 24px 24px'} : {padding: '0px 32px 24px 32px'}}>
                     <p className={styles.dialogContent_desc}>
                         Are you sure you want to delete the {`‘${board ? board.boardName: ''}’`} board? 
                         This action will remove all columns and tasks and cannot be reversed.
                     </p>
                 </DialogContent>
-                <DialogActions sx={{padding: '0px 32px 40px 32px'}}>
+                <DialogActions sx={mobile ? {padding: '0px 24px 24px 24px'} : {padding: '0px 32px 40px 32px'}}>
                     <div className={styles.dialogActions_buttons}>
                         <button className={styles.dialogActions_buttons_delete} onClick={handleDelete}>
                             Delete

@@ -46,7 +46,6 @@ fieldset{
     --header-title-text-color: #000112;
     --header-border-color: #E4EBFA;
 
-
     --closest: 50;
     --close: 40;
     --farthest: 10;
@@ -81,6 +80,7 @@ fieldset{
 body{
     background-color: var(--body-bg);
     height: 100vh;
+    overflow: hidden;
 }
 
 input{

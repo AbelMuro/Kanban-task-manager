@@ -4,7 +4,7 @@ import styles from './styles.module.css';
 
 const BoardNameInput = forwardRef((props, ref) => {
     const board = useSelector(state => state.board);    
-    const [text, setText] = useState(board.boardName);
+    const [text, setText] = useState(board ? board.boardName : '');             //in case board is null
     const input = useRef();
     const emptyMessage = useRef();
 

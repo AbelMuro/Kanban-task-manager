@@ -8,7 +8,7 @@ function DisplayBoards() {
     const dispatch = useDispatch();
     const selectedBoard = useSelector(state => state.board);
     const boards = useLocalStorage('boards');
-    const [choosenBoard, setChoosenBoard] = useState([]);
+    const [choosenBoard, setChoosenBoard] = useState('');
     const boardIconRefs = useRef([])
 
     const handleEnter = (e) => {

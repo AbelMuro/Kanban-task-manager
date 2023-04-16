@@ -21,17 +21,18 @@ function BoardColumns() {
 
     useEffect(() => {
         const container = document.querySelector('.' + styles.container);
+
         if(sidebar){
             if(tablet)
-                container.style.padding = '0px 0px 0px 261px'
+                container.style.borderLeft = '261px solid transparent'          //i'm using border instead of padding/margin because if i used padding/margin, the scrollbar will be hidden behind the sidebar
             else
-                container.style.padding = '0px 0px 0px 300px';
+                container.style.borderLeft = '300px solid transparent';
         }
             
         else
-            container.style.padding = '';
+            container.style.borderLeft = '0px solid transparent';
 
-    }, [sidebar])
+    }, [sidebar, tablet])
 
     return (
         <section className={styles.container}>

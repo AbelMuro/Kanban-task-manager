@@ -45,3 +45,9 @@
 .popup_option:last-child{
     color: #EA5555;
 }
+
+@media(max-width: 560px){
+    .popup{
+        width: 150px;
+    }
+}

@@ -4,7 +4,7 @@ import EditBoardDialog from './EditBoardDialog';
 import styles from './styles.module.css';
 import icons from './icons';
 
-function EditBoardButton() {
+function EditOrDeleteButton() {
     const [displayPopup, setDisplayPopup] = useState(false);
     const popup = useRef();
 
@@ -50,4 +50,4 @@ function EditBoardButton() {
     )
 }
 
-export default EditBoardButton;
+export default EditOrDeleteButton;

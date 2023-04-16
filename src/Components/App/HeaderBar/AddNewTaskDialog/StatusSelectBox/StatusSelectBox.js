@@ -1,12 +1,11 @@
-import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
+import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle, memo} from 'react';
 import {useSelector} from 'react-redux';
 import styles from './styles.module.css';
 import icons from './icons';
 
-
 const StatusSelectBox = forwardRef((props, ref) => {
     const board = useSelector(state => state.board);    
-    const [option, setOption] = useState(board.columns[0].columnTitle);
+    const [option, setOption] = useState(board ? board.columns[0].columnTitle : '');
     const [openPopup, setOpenPopup] = useState(false);
     const arrowRef = useRef();
     const popup = useRef();
@@ -40,7 +39,7 @@ const StatusSelectBox = forwardRef((props, ref) => {
         const dialogContent = document.querySelector('.MuiDialogContent-root');
 
         if(openPopup)
-            dialogContent.scrollTo(0, dialogContent.scrollHeight)
+            dialogContent.scrollTo(0, dialogContent.scrollHeight);
 
     }, [openPopup])
 
@@ -68,7 +67,6 @@ const StatusSelectBox = forwardRef((props, ref) => {
         }
     }))
 
-
     return(
         <section className={styles.select}>
             <h5 className={styles.select_title}>
@@ -79,17 +77,17 @@ const StatusSelectBox = forwardRef((props, ref) => {
                 <img src={icons['arrow']} className={styles.select_box_arrow} ref={arrowRef}/>
             </div>
             <div className={styles.select_popup} ref={popup}>
-                {board.columns.map((column, i) => {
+                {board ? board.columns.map((column, i) => {
                         return(
                             <button type='button' className={styles.select_popup_option} onClick={handleOption} data-option={column.columnTitle} key={i}>
                                 {column.columnTitle}
                             </button>
                         )
                     })
-                }
+                : <></>}
             </div>
         </section>
     )
 })
 
-export default StatusSelectBox;
+export default memo(StatusSelectBox);

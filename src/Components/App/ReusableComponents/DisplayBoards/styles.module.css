@@ -61,3 +61,11 @@
         margin-left: 16px;
     }
 }
+
+
+@media(max-width: 780px){
+    .sidebar_board{
+        width: 240px;
+        padding-left: 24px;
+    }
+}

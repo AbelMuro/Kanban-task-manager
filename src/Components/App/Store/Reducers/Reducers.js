@@ -53,3 +53,14 @@ export function OpenAddColumnDialog(state = false, action){
             return state;
     }
 }
+
+export function OpenEditTaskDialog(state = {open: false, task: null, column: null}, action){
+    switch(action.type){
+        case 'set edit task dialog':
+            return {open: action.open, task: action.task, column: action.column};
+        case 'get edit task dialog': 
+            return state;
+        default: 
+            return state;
+    }
+}

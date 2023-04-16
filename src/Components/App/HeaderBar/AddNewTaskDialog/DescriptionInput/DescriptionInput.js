@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle} from 'react';
+import React, {useState, useRef, useEffect, forwardRef, useImperativeHandle, memo} from 'react';
 import styles from './styles.module.css';
 
 const DescriptionInput = forwardRef((props, ref) => {
@@ -66,4 +66,4 @@ const DescriptionInput = forwardRef((props, ref) => {
     )
 })
 
-export default DescriptionInput;
+export default memo(DescriptionInput);

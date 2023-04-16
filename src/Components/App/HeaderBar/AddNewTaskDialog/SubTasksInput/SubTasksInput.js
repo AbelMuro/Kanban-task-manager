@@ -1,4 +1,4 @@
-import React, {forwardRef, useImperativeHandle} from 'react';
+import React, {forwardRef, useImperativeHandle, memo} from 'react';
 import styles from './styles.module.css';
 
 
@@ -133,4 +133,4 @@ const SubTasksInput = forwardRef((props, ref) => {
     )
 })
 
-export default SubTasksInput;
+export default memo(SubTasksInput);

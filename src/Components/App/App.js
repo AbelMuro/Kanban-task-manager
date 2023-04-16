@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderBar from './HeaderBar';
 import SideBar from './SideBar';
 import BoardColumns from './BoardColumns';
-import {AddBoardDialog, AddNewColumn} from './ReusableDialogs'
+import {AddBoardDialog, AddNewColumn, EditTaskDialog} from './ReusableDialogs'
 import {Provider} from 'react-redux';
 import Store from './Store';
 import './styles.css';
@@ -17,6 +17,7 @@ function App() {
             </main>      
             <AddBoardDialog/>
             <AddNewColumn/>
+            <EditTaskDialog/>
         </Provider>
     )
 }

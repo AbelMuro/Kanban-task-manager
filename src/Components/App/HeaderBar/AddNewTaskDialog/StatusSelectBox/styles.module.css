@@ -72,3 +72,9 @@
 .select_popup_option:hover{
     color: #635FC7;
 }
+
+@media(max-width: 560px){
+    .select, .select_popup{
+        width: 295px;
+    }
+}
