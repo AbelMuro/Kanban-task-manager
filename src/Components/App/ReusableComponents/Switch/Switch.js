@@ -4,6 +4,9 @@ import SwitchTheme from './SwitchTheme';
 import styles from './styles.module.css';
 import icons from './icons';
 
+
+//the problem is that this component gets removed from the dom in the sidebar component and in the header bar component
+//this resets the theme back to the light theme
 function Switch(){ 
     const handleRef = useRef();
     const dispatch = useDispatch();
