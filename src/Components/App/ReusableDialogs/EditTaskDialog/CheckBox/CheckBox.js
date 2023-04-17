@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 
 const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
     const [checked, setChecked] = useState(subtask.completed);
+    const labelText = useRef();
 
     const handleChange = () => {
         handleCompleted(!checked);
@@ -10,15 +11,13 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
     }
 
     useEffect(() => {
-        const labelText = document.querySelector('.' + styles.inputContainer_label);
-
         if(checked){
-            labelText.style.textDecoration = 'line-through';
-            labelText.style.opacity = '0.5';
+            labelText.current.style.textDecoration = 'line-through';
+            labelText.current.style.opacity = '0.5';
         }
         else {
-            labelText.style.textDecoration = '';
-            labelText.style.opacity = '';
+            labelText.current.style.textDecoration = '';
+            labelText.current.style.opacity = '';
         }
     }, [checked])
 
@@ -32,7 +31,7 @@ const CheckBox = forwardRef(({subtask, handleCompleted, index}, ref) =>  {
                 ref={refInput => ref.current[index] = refInput}
                 data-task={JSON.stringify(subtask)}
                 />
-            <label className={styles.inputContainer_label}>
+            <label className={styles.inputContainer_label} ref={labelText}>
                 {subtask.subtaskDesc}
             </label>
         </fieldset>

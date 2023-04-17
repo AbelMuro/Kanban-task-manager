@@ -15,6 +15,7 @@ function AddNewColumn() {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         const boards = JSON.parse(localStorage.getItem('boards'));
         boards.forEach((board) => {
             if(board.boardName == selectedBoard.boardName)

@@ -20,7 +20,7 @@ function Tasks({currentTask, currentColumn}) {
 
         setCompletedSubTasks(completedSub);
 
-    }, [])
+    })
 
     return(      
         <>

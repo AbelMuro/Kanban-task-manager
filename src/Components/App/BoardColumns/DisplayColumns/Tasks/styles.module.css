@@ -1,6 +1,6 @@
 
 .column_task{
-    height: 88px;
+    min-height: 88px;
     background-color: var(--task-box-bg-color);
     padding: 23px 16px 23px 16px;
     border-radius: 8px;

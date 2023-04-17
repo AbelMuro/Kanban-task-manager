@@ -16,12 +16,26 @@ function DialogBox() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let boardNameAlreadyExists = false;
 
         const prevBoard = JSON.parse(localStorage.getItem('boards'));                                           //getting any previous boards from the local storage
         let columns = allColumns.current.state;
         let boardTitle = boardName.current.state;
 
         if(prevBoard){
+            prevBoard.every((board) => {
+                if(board.boardName == boardTitle){
+                    boardNameAlreadyExists = true;
+                    return false;
+                }
+                else 
+                    return true;
+            })
+            if(boardNameAlreadyExists) {
+                alert('Board name already exists');
+                return;
+            }
+
             let boards = JSON.stringify([...prevBoard, {boardName: boardTitle, columns: columns}]);             //grouping together the prevBoards and the new board into an array
             localStorage.setItem('boards', boards);
         }  

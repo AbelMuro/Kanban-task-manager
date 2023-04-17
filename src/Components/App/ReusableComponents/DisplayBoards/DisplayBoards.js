@@ -33,7 +33,7 @@ function DisplayBoards() {
         else if(boards.length)
             setChoosenBoard(boards[0].boardName);
 
-    }, [boards])
+    }, [boards, selectedBoard])
 
 
     //removing the purple background color from the previously selected board

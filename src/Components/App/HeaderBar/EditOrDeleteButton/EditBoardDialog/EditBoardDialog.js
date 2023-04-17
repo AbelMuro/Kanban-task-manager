@@ -20,7 +20,24 @@ function EditBoardDialog(){
     }
 
 //this handler will update the local storage and will also update the store
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let boardNameAlreadyExists = false
+        const prevBoard = JSON.parse(localStorage.getItem('boards'));
+
+        prevBoard.every((board) => {
+            if(board.boardName == newBoardName.current.state){
+                boardNameAlreadyExists = true;
+                return false;
+            }
+            else 
+                return true;
+        })
+        if(boardNameAlreadyExists && newBoardName.current.state != board.boardName) {
+            alert('Board name already exists');
+            return;
+        }
+
         handlePopup();
 
         const allBoards = JSON.parse(localStorage.getItem('boards'));
