@@ -48,8 +48,14 @@ const EditColumns = forwardRef((props, ref) => {
     }
 
     const handleColumn = () => {
+        let numOfColumns = 0;
         const allColumns = document.querySelector('.' + styles.allColumns_columns);
-        if(allColumns.childNodes.length >= 5)
+        allColumns.childNodes.forEach((column) => {
+            if(column.childNodes.length)
+                numOfColumns++;
+        })
+
+        if(numOfColumns >= 5)
             return;
 
             const newInputContainer = document.createElement('div');
